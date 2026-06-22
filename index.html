@@ -168,6 +168,11 @@
             line-height: 1.2;
         }
 
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
         .hero-subtitle {
             font-size: 1.3rem;
             margin-bottom: 2rem;
@@ -246,6 +251,11 @@
             color: var(--primary);
         }
 
+        .section-title h2 em {
+            font-style: italic;
+            color: var(--secondary);
+        }
+
         .section-title p {
             font-size: 1.1rem;
             color: var(--gray);
@@ -253,12 +263,38 @@
             margin: 0 auto;
         }
 
+        .section-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--secondary);
+        }
+
+        .section-label::after {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--secondary);
+        }
+
         /* About Section */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
         }
 
         .about-content h3 {
@@ -273,12 +309,73 @@
             color: var(--gray);
         }
 
+        .about-content p strong {
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+
         .highlight-box {
             background: var(--white);
             padding: 2rem;
             border-left: 4px solid var(--secondary);
             margin: 2rem 0;
             border-radius: 4px;
+        }
+
+        .about-pillars {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .pillar {
+            padding: 1.5rem;
+            border: 1px solid #e9e5e0;
+            border-radius: 6px;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: var(--white);
+        }
+
+        .pillar:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 4px 12px rgba(139, 111, 71, 0.08);
+        }
+
+        .pillar-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            line-height: 1;
+            flex-shrink: 0;
+            width: 2.2rem;
+        }
+
+        .pillar-text h4 {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .pillar-icon {
+            flex-shrink: 0;
+            opacity: 0.6;
+            width: 18px;
+            height: 18px;
+        }
+
+        .pillar-text p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin: 0;
         }
 
         .stats-grid {
@@ -308,7 +405,7 @@
             font-size: 0.95rem;
         }
 
-        /* Services/Programs Section */
+        /* Programs Section */
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -322,6 +419,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
             border-top: 4px solid var(--secondary);
+            cursor: pointer;
         }
 
         .program-card:hover {
@@ -329,7 +427,7 @@
             box-shadow: 0 12px 24px rgba(139, 111, 71, 0.15);
         }
 
-        .program-icon {
+        .program-card .program-icon {
             width: 50px;
             height: 50px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -344,14 +442,41 @@
 
         .program-card h3 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-size: 1.3rem;
+        }
+
+        .program-card .program-for {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
         }
 
         .program-card p {
             color: var(--gray);
             line-height: 1.7;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .program-themes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .program-theme {
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.7rem;
+            border: 1px solid #e9e5e0;
+            color: var(--gray);
+            border-radius: 20px;
         }
 
         .program-card a {
@@ -397,10 +522,9 @@
             transform: scale(1.05);
         }
 
-        .partner-logo img {
-            max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
+        .partner-logo div {
+            text-align: center;
+            font-weight: 700;
         }
 
         /* Testimonials Section */
@@ -520,6 +644,206 @@
             line-height: 1.6;
         }
 
+        /* Why Africa Section */
+        .why-africa {
+            background: var(--light-bg);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .why-left p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-left blockquote {
+            border-left: 3px solid var(--secondary);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--primary);
+        }
+
+        .why-right {
+            display: grid;
+            gap: 1px;
+            background: #e9e5e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .why-point {
+            background: var(--white);
+            padding: 1.8rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .why-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        .why-point h4 {
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .why-point p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* How We Work Section */
+        .how-we-work {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .how-we-work .section-title h2 {
+            color: var(--white);
+        }
+
+        .how-we-work .section-title h2 em {
+            color: var(--accent);
+        }
+
+        .how-we-work .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .how-we-work .section-label {
+            color: var(--accent);
+        }
+
+        .how-we-work .section-label::before,
+        .how-we-work .section-label::after {
+            background: var(--accent);
+        }
+
+        .how-intro {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .how-step {
+            padding: 2.5rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            transition: background 0.3s;
+        }
+
+        .how-step:hover {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .step-num {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: rgba(212, 175, 55, 0.25);
+            line-height: 1;
+            margin-bottom: 1.2rem;
+        }
+
+        .step-icon {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .step-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .how-step h3 {
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .how-step p {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Marquee */
+        .marquee-strip {
+            border-top: 1px solid #e9e5e0;
+            border-bottom: 1px solid #e9e5e0;
+            padding: 0.8rem 0;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .marquee-inner {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-inner span {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            padding: 0 2rem;
+        }
+
+        .marquee-inner .dot {
+            color: var(--secondary);
+            padding: 0;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
         /* Form Section */
         .form-section {
             background: var(--light-bg);
@@ -543,6 +867,7 @@
             margin-bottom: 0.5rem;
             color: var(--primary);
             font-weight: 600;
+            font-size: 0.85rem;
         }
 
         .form-group input,
@@ -570,6 +895,35 @@
             min-height: 120px;
         }
 
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            accent-color: var(--secondary);
+        }
+
+        .form-check label {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--gray);
+            font-weight: 400;
+            margin: 0;
+        }
+
         .form-submit {
             width: 100%;
             background: var(--secondary);
@@ -587,6 +941,13 @@
             background: var(--primary);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(139, 111, 71, 0.2);
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-align: center;
+            margin-top: 0.8rem;
         }
 
         .form-message {
@@ -667,6 +1028,195 @@
             line-height: 1.8;
         }
 
+        /* Program Detail Modal */
+        .prog-detail {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        .prog-detail.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .prog-detail-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 24, 20, 0.6);
+        }
+
+        .prog-detail-panel {
+            position: relative;
+            margin-left: auto;
+            width: min(640px, 100%);
+            height: 100%;
+            background: var(--white);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .prog-detail.open .prog-detail-panel {
+            transform: translateX(0);
+        }
+
+        .prog-detail-inner {
+            padding: 3rem 2.5rem;
+            min-height: 100%;
+        }
+
+        .prog-detail-close {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+        }
+
+        .close-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e9e5e0;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gray);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .close-btn:hover {
+            background: var(--primary);
+        }
+
+        .close-btn:hover svg {
+            stroke: var(--white);
+        }
+
+        .detail-eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-for {
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e9e5e0;
+        }
+
+        .detail-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #e9e5e0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .detail-meta-item {
+            background: var(--white);
+            padding: 1rem 1.2rem;
+        }
+
+        .detail-meta-item span {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-meta-item p {
+            font-size: 0.9rem;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h3 {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .detail-section p {
+            font-size: 0.92rem;
+            line-height: 1.9;
+            color: var(--gray);
+        }
+
+        .detail-themes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .detail-theme {
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.9rem;
+            border: 1px solid #e9e5e0;
+            color: var(--gray);
+            border-radius: 20px;
+        }
+
+        .detail-cta {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: inherit;
+            transition: background 0.2s;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .detail-cta:hover {
+            background: var(--primary);
+        }
+
         /* Footer */
         footer {
             background: var(--primary);
@@ -715,6 +1265,10 @@
             margin: 0 auto;
         }
 
+        .footer-bottom p {
+            font-size: 0.9rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -740,7 +1294,8 @@
             .about-grid,
             .programs-grid,
             .testimonials-grid,
-            .team-grid {
+            .team-grid,
+            .why-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -762,6 +1317,69 @@
 
             section {
                 padding: 50px 0;
+            }
+
+            .how-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .how-step {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .how-step:nth-child(2) {
+                border-right: none;
+            }
+
+            .how-step:nth-child(3),
+            .how-step:nth-child(4) {
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .prog-detail-panel {
+                width: 100%;
+            }
+
+            .prog-detail-inner {
+                padding: 2rem 1.5rem;
+            }
+
+            .detail-meta {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .how-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .how-step {
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .how-step:first-child {
+                border-top: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-meta {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -797,6 +1415,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#programs">Programs</a></li>
+                <li><a href="#why-africa">Why Africa</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -813,48 +1432,84 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Living Ecosystems of Global Learning</h1>
-            <p class="hero-subtitle">Transform educational experiences across Africa through immersive, culturally-integrated learning programs that prepare students for a globally-connected world.</p>
+            <h1>Living ecosystems<br>of <em>global</em> learning.</h1>
+            <p class="hero-subtitle">Archer Africa partners with universities to design immersive international learning experiences — turning global education into lived experience across Africa, Europe, the UK, and the USA.</p>
             <div class="hero-buttons">
-                <button class="btn-primary" onclick="document.getElementById('inquiry').scrollIntoView({behavior: 'smooth'})">Explore Programs</button>
-                <button class="btn-secondary" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+                <button class="btn-primary" onclick="document.getElementById('inquiry').scrollIntoView({behavior: 'smooth'})">Partner With Us</button>
+                <button class="btn-secondary" onclick="document.getElementById('programs').scrollIntoView({behavior: 'smooth'})">Explore Programmes →</button>
             </div>
         </div>
     </section>
+
+    <!-- Marquee Strip -->
+    <div class="marquee-strip">
+        <div class="marquee-inner">
+            <span>Study Tours</span><span class="dot">·</span><span>Executive Education</span><span class="dot">·</span><span>Online Learning Immersions</span><span class="dot">·</span><span>Institutional Partnerships</span><span class="dot">·</span><span>African Innovation Ecosystems</span><span class="dot">·</span><span>Global Classroom</span><span class="dot">·</span>
+            <span>Study Tours</span><span class="dot">·</span><span>Executive Education</span><span class="dot">·</span><span>Online Learning Immersions</span><span class="dot">·</span><span>Institutional Partnerships</span><span class="dot">·</span><span>African Innovation Ecosystems</span><span class="dot">·</span><span>Global Classroom</span><span class="dot">·</span>
+        </div>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="light-bg">
         <div class="container">
             <div class="about-grid">
                 <div class="about-content">
-                    <h3>Who We Are</h3>
-                    <p>Archer Africa is a pioneering consultancy dedicated to creating transformative educational experiences in Africa. We partner with universities and institutions to design and deliver programs that blend rigorous academics with authentic cultural engagement.</p>
-                    
+                    <div class="section-label" style="justify-content:flex-start;">About Archer Africa</div>
+                    <h3>Where internationalisation becomes <span style="color:var(--secondary);font-style:italic;">real</span></h3>
+                    <p>Archer Africa curates programmes rooted in African innovation ecosystems, connecting participants with entrepreneurs, researchers, policymakers and cultural leaders. We partner with universities, graduate schools, and executive education programmes to design and deliver immersive study experiences.</p>
+                    <p>At a time when higher education is increasingly global, many programmes remain <strong>theoretical or inaccessible</strong> to students studying remotely. Archer Africa bridges this gap.</p>
+                    <p>We create learning journeys that allow students, whether on-campus, evening, executive education, or online, to experience global learning firsthand.</p>
+
                     <div class="highlight-box">
                         <strong>Our Mission:</strong> To build living ecosystems of learning that empower students, strengthen institutional partnerships, and unlock the potential of African education on the global stage.
                     </div>
-
-                    <p>With over a decade of experience and partnerships across the continent, we've developed a unique approach that combines:</p>
-                    <ul style="margin-left: 1.5rem; color: var(--gray); line-height: 1.9;">
-                        <li>✓ Rigorous academic curricula</li>
-                        <li>✓ Immersive cultural experiences</li>
-                        <li>✓ Professional development pathways</li>
-                        <li>✓ Community engagement initiatives</li>
-                    </ul>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number counter" data-target="5000">0</div>
-                        <div class="stat-label">Students Served</div>
+                <div>
+                    <div class="about-pillars">
+                        <div class="pillar">
+                            <div class="pillar-num">01</div>
+                            <div class="pillar-text">
+                                <h4>Real-World Contexts</h4>
+                                <p>Bring academic ideas into living environments where complex challenges and solutions unfold in real time.</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-num">02</div>
+                            <div class="pillar-text">
+                                <h4>Connect Online Learners</h4>
+                                <p>Bring distance and hybrid students into the life of their institution through shared immersive experience.</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-num">03</div>
+                            <div class="pillar-text">
+                                <h4>Deepen Partnerships</h4>
+                                <p>Move beyond formal agreements toward active global collaborations between institutions.</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-num">04</div>
+                            <div class="pillar-text">
+                                <h4>Build Global Networks</h4>
+                                <p>Students form lasting professional networks across borders, institutions, and industries.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number counter" data-target="45">0</div>
-                        <div class="stat-label">Partner Universities</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number counter" data-target="12">0</div>
-                        <div class="stat-label">African Countries</div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number counter" data-target="5000">0</div>
+                            <div class="stat-label">Students Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number counter" data-target="45">0</div>
+                            <div class="stat-label">Partner Universities</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number counter" data-target="12">0</div>
+                            <div class="stat-label">African Countries</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -865,30 +1520,171 @@
     <section id="programs">
         <div class="container">
             <div class="section-title">
-                <h2>Our Programs</h2>
-                <p>Comprehensive educational offerings designed for both undergraduate and graduate learners</p>
+                <div class="section-label">What We Offer</div>
+                <h2>Experiences tailored to<br>your <em>institution's ambitions</em></h2>
+                <p>Every programme is co-designed with partner universities and aligned to specific academic goals and internationalisation strategies.</p>
             </div>
 
             <div class="programs-grid">
-                <div class="program-card">
+                <div class="program-card" onclick="openDetail(0)">
+                    <div class="program-icon">🚀</div>
+                    <h3>Global Innovation Immersion</h3>
+                    <div class="program-for">MBA · Graduate · Executive</div>
+                    <p>Students engage with African startup ecosystems, venture builders, and innovation hubs — meeting entrepreneurs, investors, and technology leaders.</p>
+                    <div class="program-themes">
+                        <span class="program-theme">Entrepreneurship</span>
+                        <span class="program-theme">Fintech</span>
+                        <span class="program-theme">Social Innovation</span>
+                        <span class="program-theme">Emerging Markets</span>
+                    </div>
+                    <a href="javascript:void(0)">Learn More →</a>
+                </div>
+
+                <div class="program-card" onclick="openDetail(1)">
+                    <div class="program-icon">🌆</div>
+                    <h3>Cities, Climate & Urban Africa</h3>
+                    <div class="program-for">Policy · Urban · Sustainability</div>
+                    <p>Students explore how African cities respond to climate change, urbanisation, and infrastructure challenges through field visits and expert conversations.</p>
+                    <div class="program-themes">
+                        <span class="program-theme">Climate Adaptation</span>
+                        <span class="program-theme">Urban Innovation</span>
+                        <span class="program-theme">Sustainable Development</span>
+                    </div>
+                    <a href="javascript:void(0)">Learn More →</a>
+                </div>
+
+                <div class="program-card" onclick="openDetail(2)">
                     <div class="program-icon">🌍</div>
-                    <h3>Study Abroad</h3>
-                    <p>Immersive semester or year-long programs combining academics with cultural immersion across East, West, and Southern Africa.</p>
-                    <a href="#inquiry">Learn More →</a>
+                    <h3>Africa in the Global Economy</h3>
+                    <div class="program-for">Economics · International Relations</div>
+                    <p>Students engage with policymakers, economists, and industry leaders to understand Africa's evolving role in global trade, finance, and development.</p>
+                    <div class="program-themes">
+                        <span class="program-theme">Regional Trade</span>
+                        <span class="program-theme">Economic Transformation</span>
+                        <span class="program-theme">Global Partnerships</span>
+                    </div>
+                    <a href="javascript:void(0)">Learn More →</a>
                 </div>
 
-                <div class="program-card">
-                    <div class="program-icon">🎓</div>
-                    <h3>Academic Exchange</h3>
-                    <p>Faculty-led semester programs with institutional credits, research opportunities, and peer mentoring from African academics.</p>
-                    <a href="#inquiry">Learn More →</a>
+                <div class="program-card" onclick="openDetail(3)">
+                    <div class="program-icon">👔</div>
+                    <h3>Leadership in Emerging Markets</h3>
+                    <div class="program-for">Executive MBA · Executive Education</div>
+                    <p>Senior professionals engage with business leaders and policy innovators navigating rapidly changing economic and regulatory environments across the continent.</p>
+                    <div class="program-themes">
+                        <span class="program-theme">Leadership in Complexity</span>
+                        <span class="program-theme">Cross-Cultural Strategy</span>
+                        <span class="program-theme">Innovation</span>
+                    </div>
+                    <a href="javascript:void(0)">Learn More →</a>
                 </div>
 
-                <div class="program-card">
-                    <div class="program-icon">💼</div>
-                    <h3>Professional Development</h3>
-                    <p>Tailored consulting services for universities seeking to expand African study options and strengthen global partnerships.</p>
-                    <a href="#inquiry">Learn More →</a>
+                <div class="program-card" onclick="openDetail(4)">
+                    <div class="program-icon">💻</div>
+                    <h3>Global Classroom</h3>
+                    <div class="program-for">Online · Hybrid · Distance</div>
+                    <p>Students who typically interact only virtually come together for a powerful shared immersive experience, building professional networks and deepening institutional connection.</p>
+                    <div class="program-themes">
+                        <span class="program-theme">Cohort Cohesion</span>
+                        <span class="program-theme">Network Building</span>
+                        <span class="program-theme">Institutional Engagement</span>
+                    </div>
+                    <a href="javascript:void(0)">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Africa Section -->
+    <section id="why-africa" class="why-africa">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-label">Why Africa</div>
+                <h2>Where global ideas meet <em>lived realities</em></h2>
+                <p>Africa is one of the most dynamic regions shaping the future of the global economy, innovation, and leadership.</p>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-left">
+                    <p>Rapidly growing cities, entrepreneurial ecosystems, and cultural movements are redefining conversations about technology, sustainability, and development.</p>
+                    <p>Yet despite its importance, many students studying in Europe and North America have limited opportunities to engage meaningfully with African contexts during their academic journeys.</p>
+                    <blockquote>"Africa is not simply a destination. It is a place where students encounter the complexity and creativity that define our interconnected world."</blockquote>
+                </div>
+                <div class="why-right">
+                    <div class="why-point">
+                        <div class="why-dot"></div>
+                        <div>
+                            <h4>Expand Beyond Traditional Destinations</h4>
+                            <p>Strengthen internationalisation strategies by offering global learning opportunities outside the conventional circuit.</p>
+                        </div>
+                    </div>
+                    <div class="why-point">
+                        <div class="why-dot"></div>
+                        <div>
+                            <h4>Engage Emerging Markets</h4>
+                            <p>Expose students to entrepreneurial ecosystems and diverse leadership contexts increasingly central to global conversations.</p>
+                        </div>
+                    </div>
+                    <div class="why-point">
+                        <div class="why-dot"></div>
+                        <div>
+                            <h4>Build Meaningful Partnerships</h4>
+                            <p>Connect with African research institutions and universities to build active, reciprocal partnerships across the continent.</p>
+                        </div>
+                    </div>
+                    <div class="why-point">
+                        <div class="why-dot"></div>
+                        <div>
+                            <h4>Foster Cross-Cultural Understanding</h4>
+                            <p>Africa challenges assumptions and reveals new ways of thinking about leadership, innovation, and global collaboration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section class="how-we-work">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-label">How We Work With Universities</div>
+                <h2>A partnership built on<br><em>co-design and clarity</em></h2>
+                <p>We know that universities need confidence before committing to international programmes. Our process is designed to be transparent, collaborative, and strategically aligned from the very first conversation.</p>
+            </div>
+
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="step-num">01</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3>Discovery Conversation</h3>
+                    <p>We begin with a strategic conversation to understand your institution's internationalisation goals, student profile, programme structure, and timeline.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">02</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <h3>Programme Co-Design</h3>
+                    <p>We develop a tailored programme proposal — including academic framing, itinerary, partner organisations, and learning outcomes — in close collaboration with your team.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">03</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Logistics and Delivery</h3>
+                    <p>We manage all operational elements — travel, accommodation, venue partnerships, speaker coordination, and on-the-ground facilitation — so your team can focus on the academic experience.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">04</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3>Evaluation and Growth</h3>
+                    <p>After each programme, we conduct structured evaluation and work with you to deepen the partnership — building toward longer-term institutional collaboration.</p>
                 </div>
             </div>
         </div>
@@ -904,22 +1700,22 @@
 
             <div class="partners-grid">
                 <div class="partner-logo">
-                    <div style="text-align: center; color: var(--primary); font-weight: 700;">University<br>Partners</div>
+                    <div style="color: var(--primary);">University<br>Partners</div>
                 </div>
                 <div class="partner-logo">
-                    <div style="text-align: center; color: var(--secondary); font-weight: 700;">Academic<br>Network</div>
+                    <div style="color: var(--secondary);">Academic<br>Network</div>
                 </div>
                 <div class="partner-logo">
-                    <div style="text-align: center; color: var(--primary); font-weight: 700;">Global<br>Alliance</div>
+                    <div style="color: var(--primary);">Global<br>Alliance</div>
                 </div>
                 <div class="partner-logo">
-                    <div style="text-align: center; color: var(--secondary); font-weight: 700;">Education<br>Trust</div>
+                    <div style="color: var(--secondary);">Education<br>Trust</div>
                 </div>
                 <div class="partner-logo">
-                    <div style="text-align: center; color: var(--primary); font-weight: 700;">Cultural<br>Exchange</div>
+                    <div style="color: var(--primary);">Cultural<br>Exchange</div>
                 </div>
                 <div class="partner-logo">
-                    <div style="text-align: center; color: var(--secondary); font-weight: 700;">Development<br>Institute</div>
+                    <div style="color: var(--secondary);">Development<br>Institute</div>
                 </div>
             </div>
         </div>
@@ -1022,7 +1818,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="light-bg">
+    <section id="faq" class="light-bg">
         <div class="container">
             <div class="section-title">
                 <h2>Frequently Asked Questions</h2>
@@ -1097,22 +1893,24 @@
     <section id="inquiry" class="form-section">
         <div class="container">
             <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Ready to explore transformative educational experiences in Africa? Contact us today.</p>
+                <div class="section-label">Get In Touch</div>
+                <h2>Start a <em>conversation</em> about your institution</h2>
+                <p>Whether you have a specific programme in mind or are exploring what international learning could look like for your students, we would love to hear from you.</p>
             </div>
 
             <div class="form-container">
                 <div id="formMessage" class="form-message"></div>
 
                 <form id="inquiryForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -1122,33 +1920,39 @@
 
                     <div class="form-group">
                         <label for="role">Your Role *</label>
-                        <select id="role" name="role" required>
-                            <option value="">-- Select --</option>
-                            <option value="student">Student</option>
-                            <option value="faculty">Faculty Member</option>
-                            <option value="admin">University Administrator</option>
-                            <option value="consultant">Consultant</option>
-                            <option value="other">Other</option>
-                        </select>
+                        <input type="text" id="role" name="role" placeholder="Director of International Partnerships" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="interest">Program of Interest *</label>
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">Programme Interest *</label>
                         <select id="interest" name="interest" required>
-                            <option value="">-- Select --</option>
-                            <option value="study">Study Abroad</option>
-                            <option value="exchange">Academic Exchange</option>
-                            <option value="consulting">Professional Development</option>
-                            <option value="other">Other / Multiple</option>
+                            <option value="">Select a programme type</option>
+                            <option value="study">International Study Experiences</option>
+                            <option value="executive">Executive Education Immersions</option>
+                            <option value="online">Experiences for Online Learners</option>
+                            <option value="partnership">Institutional Partnership Experiences</option>
+                            <option value="curated">Curated African Learning Contexts</option>
+                            <option value="exploring">Not sure yet — exploring options</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Tell us about your interests *</label>
-                        <textarea id="message" name="message" required placeholder="What are you interested in learning more about?"></textarea>
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your institution, your students, and what you're looking to achieve through international learning..."></textarea>
                     </div>
 
-                    <button type="submit" class="form-submit">Send Inquiry</button>
+                    <div class="form-check">
+                        <input type="checkbox" id="consent" name="consent">
+                        <label for="consent">I'm happy for Archer Africa to contact me about relevant programmes and partnership opportunities.</label>
+                    </div>
+
+                    <button type="submit" class="form-submit">Send Enquiry</button>
+                    <p class="form-note">We typically respond within two business days.</p>
                 </form>
             </div>
         </div>
@@ -1158,32 +1962,29 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-section">
-                <h4>About Archer Africa</h4>
+                <h4>Archer Africa</h4>
                 <ul>
-                    <li><a href="#about">Our Story</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#testimonials">Impact</a></li>
-                    <li><a href="#inquiry">Contact Us</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#why-africa">Why Africa</a></li>
+                    <li><a href="#inquiry">How We Work</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Programs</h4>
+                <h4>Programmes</h4>
                 <ul>
-                    <li><a href="#programs">Study Abroad</a></li>
-                    <li><a href="#programs">Academic Exchange</a></li>
-                    <li><a href="#programs">Professional Dev</a></li>
-                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#programs">Study Tours</a></li>
+                    <li><a href="#programs">Executive Education</a></li>
+                    <li><a href="#programs">Online Learners</a></li>
+                    <li><a href="#programs">Institutional</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Resources</h4>
+                <h4>Partner</h4>
                 <ul>
-                    <li><a href="#">Program Brochure</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">News</a></li>
+                    <li><a href="#inquiry">Work With Us</a></li>
+                    <li><a href="#inquiry">Contact</a></li>
                 </ul>
             </div>
 
@@ -1199,23 +2000,134 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 Archer Africa. All rights reserved. | Privacy Policy | Terms of Service</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">Pioneering transformative education across Africa</p>
+            <p>&copy; 2026 Archer Africa. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Johannesburg, South Africa</p>
         </div>
     </footer>
 
+    <!-- Program Detail Modal -->
+    <div class="prog-detail" id="progDetail">
+        <div class="prog-detail-backdrop" onclick="closeDetail()"></div>
+        <div class="prog-detail-panel">
+            <div class="prog-detail-inner">
+                <div class="prog-detail-close">
+                    <button class="close-btn" onclick="closeDetail()">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+                <div id="detailContent"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Program data
+        const programmes = [
+            {
+                eyebrow: "MBA · Graduate · Executive Education",
+                title: "Global Innovation Immersion",
+                for: "Designed for MBA programmes, graduate schools, and executive education cohorts",
+                duration: "10 - 14 days",
+                format: "Immersive field programme, cultural excursions",
+                location: "Innovation hubs, university campuses, SMME operations",
+                cohort: "Tailored to your institution",
+                desc: "Students spend approximately two weeks engaging with startup ecosystems, venture builders, research institutions, and innovation hubs. Participants meet entrepreneurs, investors, policymakers, and technology leaders while exploring how innovation responds to local and global challenges.",
+                outcomes: "Participants leave with a richer understanding of emerging market entrepreneurship, practical exposure to innovation ecosystems, and a global professional network that extends across continents.",
+                themes: ["Entrepreneurship & venture ecosystems", "Fintech and digital transformation", "Social innovation and impact investment", "Emerging market strategy", "Cross-cultural leadership", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"]
+            },
+            {
+                eyebrow: "Public Policy · Urban Studies · Sustainability",
+                title: "Cities, Climate & Urban Africa",
+                for: "Designed for public policy, urban studies, sustainability, and environmental programmes",
+                duration: "10 - 14 days",
+                format: "Field visits, expert roundtables and cultural excursions",
+                location: "Innovation hubs, university campuses, SMME operations",
+                cohort: "Tailored to your institution",
+                desc: "Students explore how African cities are responding to climate change, urbanisation, and infrastructure challenges. The programme combines academic discussions, field visits, and conversations with city planners, researchers, and community organisations working at the intersection of climate and development.",
+                outcomes: "Participants gain direct exposure to how urban communities navigate climate adaptation, infrastructure constraints, and governance — perspectives that reshape how they approach policy analysis and environmental challenges.",
+                themes: ["Climate adaptation and resilience", "Urban innovation and infrastructure", "Sustainable development", "Community-led environmental solutions", "Governance and policy", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"]
+            },
+            {
+                eyebrow: "Economics · International Relations · Global Studies",
+                title: "Africa in the Global Economy",
+                for: "Designed for undergraduate and graduate programmes in economics, international relations, and global studies",
+                duration: "8 - 14 days",
+                format: "Institutional visits and policy dialogues",
+                location: "Financial and policy institutions",
+                cohort: "Tailored to your institution",
+                desc: "Students engage with policymakers, economists, and industry leaders to understand Africa's evolving role in global trade, finance, and development. Visits may include universities, policy institutes, financial institutions, and regional organisations.",
+                outcomes: "Students return with a grounded understanding of regional economic dynamics, trade relationships, and the policy environments shaping Africa's role in the global economy.",
+                themes: ["Regional integration and trade", "Economic transformation", "Industrial policy", "Global economic partnerships", "Development finance", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"]
+            },
+            {
+                eyebrow: "Executive MBA · Executive Education",
+                title: "Leadership in Emerging Markets",
+                for: "Designed for executive education and executive MBA programmes",
+                duration: "8 - 14 days",
+                format: "High-level leadership immersion",
+                location: "African business and policy environments",
+                cohort: "Senior professional cohorts",
+                desc: "Senior professionals participate in immersive learning experiences that explore leadership and strategy in emerging markets. Participants engage with business leaders, entrepreneurs, and policy innovators navigating rapidly changing economic and regulatory environments.",
+                outcomes: "Executives leave with sharper instincts for leading in contexts of complexity and ambiguity, new frameworks for emerging market strategy, and connections to a remarkable network of African business and policy leaders.",
+                themes: ["Leadership in complexity", "Cross-cultural negotiation", "Emerging market strategy", "Innovation under constraint", "Stakeholder engagement", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"]
+            },
+            {
+                eyebrow: "Online · Hybrid · Distance Learning",
+                title: "Global Classroom",
+                for: "Designed for universities offering online, hybrid, evening and weekend, or distance learning programmes",
+                duration: "3 - 5 days",
+                format: "Cohort immersion gathering",
+                location: "African city of your choice",
+                cohort: "Online and distance cohorts",
+                desc: "Students who typically interact only virtually come together for a short immersive experience, creating a shared global classroom. These gatherings allow students to build deeper professional networks, meet faculty and peers in person, and strengthen their connection to their institution.",
+                outcomes: "Universities consistently report that these experiences dramatically increase engagement, cohort cohesion, and long-term alumni connection among students who met in person for the first time in Africa.",
+                themes: ["Cohort building and professional networks", "Peer learning and collaboration", "Institutional connection", "Cultural immersion", "Faculty and student engagement"]
+            }
+        ];
+
+        // Open detail modal
+        function openDetail(i) {
+            const p = programmes[i];
+            document.getElementById('detailContent').innerHTML = `
+                <div class="detail-eyebrow">${p.eyebrow}</div>
+                <div class="detail-title">${p.title}</div>
+                <div class="detail-for">${p.for}</div>
+                <div class="detail-meta">
+                    <div class="detail-meta-item"><span>Duration</span><p>${p.duration}</p></div>
+                    <div class="detail-meta-item"><span>Format</span><p>${p.format}</p></div>
+                    <div class="detail-meta-item"><span>Location</span><p>${p.location}</p></div>
+                    <div class="detail-meta-item"><span>Cohort</span><p>${p.cohort}</p></div>
+                </div>
+                <div class="detail-section"><h3>Overview</h3><p>${p.desc}</p></div>
+                <div class="detail-section"><h3>Learning Outcomes</h3><p>${p.outcomes}</p></div>
+                <div class="detail-section"><h3>Learning Themes</h3><div class="detail-themes-grid">${p.themes.map(t => `<span class="detail-theme">${t}</span>`).join('')}</div></div>
+                <button class="detail-cta" onclick="closeDetail();document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">Enquire About This Programme</button>
+            `;
+            document.getElementById('progDetail').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close detail modal
+        function closeDetail() {
+            document.getElementById('progDetail').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeDetail();
+        });
+
         // Counter Animation
         const counters = document.querySelectorAll('.counter');
-        
+
         const startCounter = () => {
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 const increment = target / 100;
-                
+
                 const updateCount = () => {
                     const count = +counter.innerText;
-                    
                     if (count < target) {
                         counter.innerText = Math.ceil(count + increment);
                         setTimeout(updateCount, 50);
@@ -1223,16 +2135,12 @@
                         counter.innerText = target.toLocaleString();
                     }
                 };
-                
                 updateCount();
             });
         };
 
         // Trigger counter on scroll
-        const observerOptions = {
-            threshold: 0.5
-        };
-
+        const observerOptions = { threshold: 0.5 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.classList.contains('stats-grid')) {
@@ -1249,19 +2157,15 @@
 
         // FAQ Accordion
         const faqItems = document.querySelectorAll('.faq-item');
-        
+
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            
             question.addEventListener('click', () => {
-                // Close other items
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
-                
-                // Toggle current item
                 item.classList.toggle('active');
             });
         });
@@ -1273,38 +2177,34 @@
         inquiryForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Get form values
             const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
                 institution: document.getElementById('institution').value,
                 role: document.getElementById('role').value,
+                email: document.getElementById('email').value,
                 interest: document.getElementById('interest').value,
-                message: document.getElementById('message').value
+                message: document.getElementById('message').value,
+                consent: document.getElementById('consent').checked
             };
 
-            // Validate
-            if (!formData.name || !formData.email || !formData.institution) {
+            if (!formData.firstName || !formData.lastName || !formData.institution || !formData.role || !formData.email || !formData.interest || !formData.message) {
                 formMessage.textContent = 'Please fill in all required fields.';
                 formMessage.className = 'form-message error';
                 return;
             }
 
-            // Simulate submission
             const submitBtn = inquiryForm.querySelector('.form-submit');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
             setTimeout(() => {
-                formMessage.textContent = '✓ Thank you for your inquiry! We\'ll be in touch within 24-48 hours.';
+                formMessage.textContent = '✓ Thank you for your enquiry! We\'ll be in touch within two business days.';
                 formMessage.className = 'form-message success';
-                
                 inquiryForm.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-
-                // Auto-clear message after 5 seconds
                 setTimeout(() => {
                     formMessage.className = 'form-message';
                 }, 5000);
@@ -1313,13 +2213,11 @@
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && document.querySelector(href)) {
                     e.preventDefault();
-                    document.querySelector(href).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
