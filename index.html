@@ -125,9 +125,14 @@
             font-size: clamp(2.2rem, 3.5vw, 3.2rem);
             font-weight: 700;
             color: var(--primary);
-            line-height: 1.1;
+            line-height: 1.2;
             margin: 1rem 0 1rem;
             letter-spacing: -0.02em;
+            min-height: 4.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         .section-heading h2 em {
             font-style: italic;
@@ -166,15 +171,50 @@
             right: 0;
             z-index: 900;
             padding: 0.9rem 0;
-            background: var(--primary);
-            transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease), padding var(--t) var(--ease);
+            transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease), padding var(--t) var(--ease), border-bottom var(--t) var(--ease);
             box-shadow: none;
+            background: transparent;
+            overflow: hidden;
+            border-bottom: 1px solid transparent;
         }
         nav.scrolled {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        nav .nav-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center 40%;
+            transition: opacity 0.5s var(--ease);
+        }
+        nav .nav-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--primary);
+            opacity: 0.82;
+        }
+        nav .nav-white-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
             background: var(--white);
+            opacity: 0;
+            transition: opacity 0.5s var(--ease);
+            box-shadow: none;
+        }
+        nav.scrolled .nav-bg {
+            opacity: 0;
+        }
+        nav.scrolled .nav-white-bg {
+            opacity: 1;
             box-shadow: var(--shadow-sm);
         }
         .nav-inner {
+            position: relative;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -312,7 +352,7 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* ===== MOBILE OVERLAY ===== */
+        /* ===== MOBILE OVERLAY — refined ===== */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -322,49 +362,108 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 1.8rem;
             transform: translateX(100%);
-            transition: transform 0.45s var(--ease-out);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 2rem;
         }
         .mobile-overlay.open {
             transform: translateX(0);
         }
-        .mobile-overlay a {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--white);
-            letter-spacing: 0.04em;
-            transition: color var(--t) var(--ease);
+        .mobile-overlay .mobile-link {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.06em;
+            transition: color var(--t) var(--ease), transform var(--t) var(--ease);
+            position: relative;
+            padding: 0.25rem 0;
         }
-        .mobile-overlay a:hover {
+        .mobile-overlay .mobile-link:hover {
             color: var(--accent);
+            transform: translateY(-2px);
         }
-        .mobile-cta-btn {
+        .mobile-overlay .mobile-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width var(--t) var(--ease), left var(--t) var(--ease);
+        }
+        .mobile-overlay .mobile-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .mobile-overlay .mobile-cta-btn {
             display: inline-block;
-            padding: 0.9rem 2.5rem;
+            padding: 0.8rem 2.5rem;
             background: var(--accent);
             color: var(--primary);
             font-weight: 700;
             font-size: 0.85rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            border-radius: 6px;
+            border-radius: 8px;
+            transition: background var(--t) var(--ease), transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+            margin-top: 0.5rem;
+            border: 2px solid var(--accent);
+        }
+        .mobile-overlay .mobile-cta-btn:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
         }
         .mobile-close {
             position: absolute;
             top: 1.5rem;
-            right: 2rem;
-            background: none;
-            border: none;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
             color: var(--white);
-            font-size: 2.5rem;
+            font-size: 2rem;
             line-height: 1;
-            min-width: 44px;
-            min-height: 44px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: background var(--t) var(--ease), transform var(--t) var(--ease);
+            min-width: 48px;
+            min-height: 48px;
+        }
+        .mobile-close:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: rotate(90deg);
+        }
+        .mobile-overlay .mobile-brand {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+        }
+        .mobile-overlay .mobile-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.3;
+            border-radius: 2px;
+            margin: 0.3rem 0;
+        }
+        .mobile-overlay .mobile-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
         }
 
         /* ===== HERO ===== */
@@ -383,7 +482,7 @@
         .hero-bg-img {
             position: absolute;
             inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1800&q=80');
+            background-image: url('images/hero-bg.jpg');
             background-size: cover;
             background-position: center 40%;
             z-index: 0;
@@ -794,7 +893,7 @@
         .why-africa-bg {
             position: absolute;
             inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1600&q=80');
+            background-image: url('images/why-africa-bg.jpg');
             background-size: cover;
             background-position: center 45%;
             will-change: transform;
@@ -1251,6 +1350,22 @@
         /* ===== INQUIRY ===== */
         .inquiry {
             background: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .inquiry::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('images/inquiry-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .inquiry .container {
+            position: relative;
+            z-index: 1;
         }
         .inquiry-grid {
             display: grid;
@@ -1357,12 +1472,67 @@
             line-height: 1.6;
             margin: 0;
         }
-        .inquiry-form {
-            background: var(--white);
+
+        /* ===== MAP — blue overlay with pin ===== */
+        .inquiry-map {
+            margin-top: 2.5rem;
             border-radius: 8px;
-            padding: 2.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--primary);
+            position: relative;
+            height: 320px;
         }
-        .form-message {
+        .inquiry-map iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.3) contrast(1.05) brightness(0.85);
+        }
+        .inquiry-map::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--primary);
+            opacity: 0.35;
+            pointer-events: none;
+            transition: opacity var(--t) var(--ease);
+        }
+        .inquiry-map:hover::after {
+            opacity: 0.15;
+        }
+        .inquiry-map .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            pointer-events: none;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+            animation: pulse-pin 2s ease-in-out infinite;
+        }
+        @keyframes pulse-pin {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.12);
+            }
+        }
+
+        /* ===== INQUIRY FORM — transparent ===== */
+        .inquiry-form {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            padding: 2.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        .inquiry-form .form-message {
             display: none;
             padding: 1rem 1.25rem;
             border-radius: 6px;
@@ -1370,80 +1540,102 @@
             font-size: 0.9rem;
             font-weight: 600;
         }
-        .form-message.success {
-            background: #d4edda;
-            color: #155724;
+        .inquiry-form .form-message.success {
+            background: rgba(212, 237, 218, 0.2);
+            color: #b8e6c4;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(212, 237, 218, 0.15);
             display: block;
         }
-        .form-message.error {
-            background: #f8d7da;
-            color: #721c24;
+        .inquiry-form .form-message.error {
+            background: rgba(248, 215, 218, 0.2);
+            color: #f5b7b7;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(248, 215, 218, 0.15);
             display: block;
         }
-        .form-row {
+        .inquiry-form .form-message.success svg {
+            stroke: #b8e6c4;
+        }
+        .inquiry-form .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-        .form-group {
+        .inquiry-form .form-group {
             margin-bottom: 1.25rem;
         }
-        .form-group label {
+        .inquiry-form .form-group label {
             display: block;
             font-size: 0.73rem;
             font-weight: 700;
             letter-spacing: 0.09em;
             text-transform: uppercase;
-            color: var(--primary);
+            color: rgba(255, 255, 255, 0.6);
             margin-bottom: 0.5rem;
         }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .inquiry-form .form-group input,
+        .inquiry-form .form-group select,
+        .inquiry-form .form-group textarea {
             width: 100%;
             padding: 0.75rem 1rem;
-            border: 1.5px solid #e2ddd8;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: 6px;
             font-family: inherit;
             font-size: 0.92rem;
-            color: var(--dark-text);
-            background: var(--white);
-            transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+            transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t) var(--ease);
         }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #bbb;
+        .inquiry-form .form-group input::placeholder,
+        .inquiry-form .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.35);
         }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .inquiry-form .form-group input:focus,
+        .inquiry-form .form-group select:focus,
+        .inquiry-form .form-group textarea:focus {
             outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
         }
-        .form-group textarea {
+        .inquiry-form .form-group select {
+            color: var(--white);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        .inquiry-form .form-group select option {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .inquiry-form .form-group textarea {
             resize: vertical;
             min-height: 110px;
         }
-        .form-check {
+        .inquiry-form .form-check {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
             margin-bottom: 1.5rem;
         }
-        .form-check input[type="checkbox"] {
+        .inquiry-form .form-check input[type="checkbox"] {
             width: 17px;
             height: 17px;
             flex-shrink: 0;
             margin-top: 2px;
             accent-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
         }
-        .form-check label {
+        .inquiry-form .form-check label {
             font-size: 0.83rem;
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.6);
             line-height: 1.6;
         }
-        .form-submit {
+        .inquiry-form .form-submit {
             width: 100%;
             padding: 1rem;
             background: var(--secondary);
@@ -1456,14 +1648,14 @@
             text-transform: uppercase;
             transition: background var(--t) var(--ease), transform var(--t) var(--ease), color var(--t) var(--ease);
         }
-        .form-submit:hover {
-            background: var(--primary);
-            color: var(--white);
+        .inquiry-form .form-submit:hover {
+            background: var(--white);
+            color: var(--primary);
             transform: translateY(-2px);
         }
-        .form-note {
+        .inquiry-form .form-note {
             font-size: 0.78rem;
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.35);
             text-align: center;
             margin-top: 0.75rem;
         }
@@ -1753,6 +1945,9 @@
             .partners-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            .section-heading h2 {
+                min-height: 3.8rem;
+            }
         }
         @media (max-width: 768px) {
             .nav-links {
@@ -1816,6 +2011,16 @@
             }
             .section-heading h2 {
                 font-size: clamp(1.8rem, 4vw, 2.6rem);
+                min-height: 3.4rem;
+            }
+            .inquiry-map {
+                height: 240px;
+            }
+            .mobile-overlay .mobile-link {
+                font-size: 1.2rem;
+            }
+            .mobile-overlay {
+                gap: 1.5rem;
             }
         }
         @media (max-width: 480px) {
@@ -1870,6 +2075,40 @@
             }
             .section-heading h2 {
                 font-size: 1.7rem;
+                min-height: 3rem;
+            }
+            .inquiry-form {
+                padding: 1.5rem 1rem;
+            }
+            .inquiry-map {
+                height: 180px;
+            }
+            .inquiry-grid {
+                gap: 2rem;
+            }
+            .mobile-overlay .mobile-link {
+                font-size: 1.1rem;
+            }
+            .mobile-overlay .mobile-cta-btn {
+                padding: 0.7rem 2rem;
+                font-size: 0.75rem;
+            }
+            .mobile-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.6rem;
+                min-width: 40px;
+                min-height: 40px;
+                top: 1rem;
+                right: 1rem;
+            }
+            .mobile-overlay .mobile-brand {
+                font-size: 0.9rem;
+                top: 1rem;
+                left: 1rem;
+            }
+            .mobile-overlay {
+                gap: 1.2rem;
             }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -1912,11 +2151,13 @@
     </style>
 </head>
 <body>
-    <a href="#about" class="skip-link">Skip to content</a>
+    <!-- <a href="#about" class="skip-link">Skip to content</a> -->
     <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 
     <!-- NAV -->
     <nav id="mainNav">
+        <div class="nav-bg"></div>
+        <div class="nav-white-bg"></div>
         <div class="container">
             <div class="nav-inner">
                 <a href="#" class="logo">
@@ -1939,7 +2180,9 @@
         </div>
     </nav>
 
+    <!-- MOBILE OVERLAY — refined -->
     <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-brand">Archer Africa</div>
         <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
         <a href="#about" class="mobile-link">About</a>
         <a href="#programs" class="mobile-link">Programs</a>
@@ -1947,7 +2190,9 @@
         <a href="#team" class="mobile-link">Team</a>
         <a href="#testimonials" class="mobile-link">Testimonials</a>
         <a href="#faq" class="mobile-link">FAQ</a>
-        <div style="margin-top:1rem;"><a href="#inquiry" class="mobile-link mobile-cta-btn">Get In Touch</a></div>
+        <div class="mobile-divider"></div>
+        <a href="#inquiry" class="mobile-link mobile-cta-btn">Get In Touch</a>
+        <span class="mobile-sub">Living ecosystems of global learning</span>
     </div>
 
     <button class="back-top" id="backTop" aria-label="Back to top">
@@ -1958,7 +2203,7 @@
     <section class="hero">
         <div class="hero-bg-img"></div>
         <div class="hero-content">
-            <h1>Living ecosystems<br>of <em>global</em> learning.</h1>
+            <h1>Living Ecosystems<br>of <em>Global</em> Learning.</h1>
             <p class="hero-subtitle">Archer Africa partners with universities to design immersive international learning experiences — turning global education into lived experience across Africa, Europe, the UK, and the USA.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">Partner With Us</button>
@@ -1989,14 +2234,13 @@
             <span>Global Classroom</span><span class="dot">·</span>
         </div>
     </div>
-    <div class="gold-divider"></div>
 
     <!-- ABOUT -->
     <section id="about" class="about section-pad">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow">About Archer Africa</div>
-                <h2>Where Internationalisation Becomes <em>Real</em></h2>
+                <h2>Where Internationalisation <em>Becomes Real</em></h2>
                 <p>We curate programmes rooted in African innovation ecosystems, connecting participants with entrepreneurs, researchers, policymakers and cultural leaders.</p>
             </div>
             <div class="about-grid reveal">
@@ -2016,7 +2260,6 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- PROGRAMS -->
     <section id="programs" class="programs section-pad">
@@ -2030,7 +2273,7 @@
                 <!-- Card 1 -->
                 <div class="program-card reveal" onclick="openDetail(0)" role="button" tabindex="0" aria-label="Learn more about Global Innovation Immersion" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(0)">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Innovation hub with people collaborating" loading="lazy">
+                        <img src="images/program-innovation.jpg" alt="Innovation hub with people collaborating" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Global Innovation Immersion</h3>
@@ -2043,7 +2286,7 @@
                 <!-- Card 2 -->
                 <div class="program-card reveal reveal-delay-1" onclick="openDetail(1)" role="button" tabindex="0" aria-label="Learn more about Cities, Climate and Urban Africa" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(1)">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=80" alt="African city skyline at dusk" loading="lazy">
+                        <img src="images/program-cities.jpg" alt="African city skyline at dusk" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Cities, Climate & Urban Africa</h3>
@@ -2056,7 +2299,7 @@
                 <!-- Card 3 -->
                 <div class="program-card reveal reveal-delay-2" onclick="openDetail(2)" role="button" tabindex="0" aria-label="Learn more about Africa in the Global Economy" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(2)">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80" alt="Business meeting in a modern office" loading="lazy">
+                        <img src="images/program-economy.jpg" alt="Business meeting in a modern office" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Africa in the Global Economy</h3>
@@ -2069,7 +2312,7 @@
                 <!-- Card 4 -->
                 <div class="program-card reveal reveal-delay-1" onclick="openDetail(3)" role="button" tabindex="0" aria-label="Learn more about Leadership in Emerging Markets" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(3)">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80" alt="Business team collaborating" loading="lazy">
+                        <img src="images/program-leadership.jpg" alt="Business team collaborating" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Leadership in Emerging Markets</h3>
@@ -2082,7 +2325,7 @@
                 <!-- Card 5 -->
                 <div class="program-card reveal reveal-delay-2" onclick="openDetail(4)" role="button" tabindex="0" aria-label="Learn more about Global Classroom" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(4)">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt="Students in a classroom setting" loading="lazy">
+                        <img src="images/program-classroom.jpg" alt="Students in a classroom setting" loading="lazy">
                     </div>
                     <div class="card-body">
                         <h3>Global Classroom</h3>
@@ -2095,7 +2338,6 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- WHY AFRICA -->
     <section id="why-africa" class="why-africa">
@@ -2125,14 +2367,13 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- HOW WE WORK -->
     <section class="how-we-work section-pad">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">How We Work With Universities</div>
-                <h2>A Partnership Built on <em>Co-Design and Clarity</em></h2>
+                <h2>A Partnership Built on <br><em>Co-Design</em></h2>
                 <p>We know that universities need confidence before committing to international programmes. Our process is designed to be transparent, collaborative, and strategically aligned from the very first conversation.</p>
             </div>
             <div class="how-steps">
@@ -2171,14 +2412,13 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- PARTNERS -->
     <section class="partners section-pad-sm">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">Our Partners</div>
-                <h2>Our Partners</h2>
+                <h2>Our <em>Global Partners</em></h2>
                 <p>Trusted by leading universities and educational institutions globally</p>
             </div>
             <div class="partners-grid reveal">
@@ -2191,14 +2431,13 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- TESTIMONIALS -->
     <section id="testimonials" class="testimonials section-pad">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">Voices</div>
-                <h2>What Our Clients Say</h2>
+                <h2>What Our <em>Clients Say</em></h2>
                 <p>Hear from students and university decision-makers who've partnered with Archer Africa</p>
             </div>
             <div class="testimonials-grid">
@@ -2208,32 +2447,30 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- TEAM -->
     <section id="team" class="team section-pad">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">The People Behind the Work</div>
-                <h2>Meet Our Team</h2>
+                <h2>Meet Our Expert Team</h2>
                 <p>Experienced professionals dedicated to educational excellence and cultural understanding</p>
             </div>
             <div class="team-grid">
-                <div class="team-card reveal"><div class="team-image"><img src="https://images.unsplash.com/photo-1556157382-97eda2f9aa60?w=400&q=80" alt="James Kipchoge" loading="lazy"></div><div class="team-info"><h3>James Kipchoge</h3><div class="team-role">Founder & CEO</div><p class="team-bio">20+ years in international education. Harvard Kennedy School alumnus with deep African networks.</p></div></div>
-                <div class="team-card reveal reveal-delay-1"><div class="team-image"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="Amara Patel" loading="lazy"></div><div class="team-info"><h3>Amara Patel</h3><div class="team-role">Program Director</div><p class="team-bio">Expert in curriculum design and student outcomes. Former faculty at Oxford University.</p></div></div>
-                <div class="team-card reveal reveal-delay-2"><div class="team-image"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80" alt="Elise Mensah" loading="lazy"></div><div class="team-info"><h3>Elise Mensah</h3><div class="team-role">Partnership Lead</div><p class="team-bio">Builds institutional relationships across Africa and North America. Cultural integration specialist.</p></div></div>
-                <div class="team-card reveal reveal-delay-3"><div class="team-image"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Dr. Kwame Owusu" loading="lazy"></div><div class="team-info"><h3>Dr. Kwame Owusu</h3><div class="team-role">Academic Advisor</div><p class="team-bio">Ph.D. in African Studies. Leads curriculum and research initiatives across partner institutions.</p></div></div>
+                <div class="team-card reveal"><div class="team-image"><img src="images/team-james.jpg" alt="James Kipchoge" loading="lazy"></div><div class="team-info"><h3>James Kipchoge</h3><div class="team-role">Founder & CEO</div><p class="team-bio">20+ years in international education. Harvard Kennedy School alumnus with deep African networks.</p></div></div>
+                <div class="team-card reveal reveal-delay-1"><div class="team-image"><img src="images/team-amara.jpg" alt="Amara Patel" loading="lazy"></div><div class="team-info"><h3>Amara Patel</h3><div class="team-role">Program Director</div><p class="team-bio">Expert in curriculum design and student outcomes. Former faculty at Oxford University.</p></div></div>
+                <div class="team-card reveal reveal-delay-2"><div class="team-image"><img src="images/team-elise.jpg" alt="Elise Mensah" loading="lazy"></div><div class="team-info"><h3>Elise Mensah</h3><div class="team-role">Partnership Lead</div><p class="team-bio">Builds institutional relationships across Africa and North America. Cultural integration specialist.</p></div></div>
+                <div class="team-card reveal reveal-delay-3"><div class="team-image"><img src="images/team-kwame.jpg" alt="Dr. Kwame Owusu" loading="lazy"></div><div class="team-info"><h3>Dr. Kwame Owusu</h3><div class="team-role">Academic Advisor</div><p class="team-bio">Ph.D. in African Studies. Leads curriculum and research initiatives across partner institutions.</p></div></div>
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- FAQ -->
     <section id="faq" class="faq section-pad">
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">Common Questions</div>
-                <h2>Frequently Asked Questions</h2>
+                <h2>Frequently <em>Asked Questions</em></h2>
                 <p>Common questions from students and universities</p>
             </div>
             <div class="faq-container">
@@ -2260,7 +2497,6 @@
             </div>
         </div>
     </section>
-    <div class="gold-divider"></div>
 
     <!-- INQUIRY -->
     <section id="inquiry" class="inquiry section-pad">
@@ -2298,9 +2534,14 @@
                         <div class="trust-item"><div class="trust-dot"></div><p>Transparent process — no pressure, no generic proposals</p></div>
                         <div class="trust-item"><div class="trust-dot"></div><p>We typically respond within two business days</p></div>
                     </div>
+                    <!-- Map — blue overlay with pin -->
+                    <div class="inquiry-map reveal">
+                        <div class="map-pin">📍</div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.578549622208!2d28.03986231503211!3d-26.14321848342588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1c7e8f5b8f%3A0x2c5a8f8b6f0b3a2d!2sJohannesburg%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Archer Africa's location in Johannesburg"></iframe>
+                    </div>
                 </div>
 
-                <!-- Right Column -->
+                <!-- Right Column — Transparent Form -->
                 <div class="inquiry-right reveal reveal-delay-2">
                     <div class="inquiry-form">
                         <div id="formMessage" class="form-message"></div>
@@ -2498,7 +2739,7 @@
             btn.textContent = 'Sending…';
             btn.disabled = true;
             setTimeout(() => {
-                msg.innerHTML = '<svg style="width:18px;height:18px;stroke:#155724;fill:none;stroke-width:2.5;display:inline-block;vertical-align:middle;margin-right:8px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Thank you for your enquiry! We\'ll be in touch within two business days.';
+                msg.innerHTML = '<svg style="width:18px;height:18px;stroke:#b8e6c4;fill:none;stroke-width:2.5;display:inline-block;vertical-align:middle;margin-right:8px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Thank you for your enquiry! We\'ll be in touch within two business days.';
                 msg.className = 'form-message success';
                 this.reset();
                 btn.textContent = orig;
