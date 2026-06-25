@@ -133,6 +133,7 @@
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 0.2rem;
         }
         .section-heading h2 em {
             font-style: italic;
@@ -163,7 +164,7 @@
             transition: width 0.08s ease;
         }
 
-        /* ===== NAV ===== */
+        /* ===== NAV — unified with hero ===== */
         nav {
             position: fixed;
             top: 0;
@@ -178,7 +179,10 @@
             border-bottom: 1px solid transparent;
         }
         nav.scrolled {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(27, 58, 110, 0.88);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
         }
         nav .nav-bg {
             position: absolute;
@@ -194,23 +198,13 @@
             position: absolute;
             inset: 0;
             background: var(--primary);
-            opacity: 0.82;
-        }
-        nav .nav-white-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            background: var(--white);
-            opacity: 0;
-            transition: opacity 0.5s var(--ease);
-            box-shadow: none;
+            opacity: 0.78;
         }
         nav.scrolled .nav-bg {
-            opacity: 0;
-        }
-        nav.scrolled .nav-white-bg {
             opacity: 1;
-            box-shadow: var(--shadow-sm);
+        }
+        nav .nav-white-bg {
+            display: none;
         }
         .nav-inner {
             position: relative;
@@ -229,7 +223,7 @@
             transition: color var(--t) var(--ease);
         }
         nav.scrolled .logo {
-            color: var(--primary);
+            color: var(--white);
         }
         .logo-mark {
             width: 40px;
@@ -246,8 +240,8 @@
             transition: background var(--t) var(--ease), color var(--t) var(--ease);
         }
         nav.scrolled .logo-mark {
-            background: var(--primary);
-            color: var(--accent);
+            background: var(--accent);
+            color: var(--primary);
         }
         .logo-text {
             font-weight: 700;
@@ -270,7 +264,7 @@
             position: relative;
         }
         nav.scrolled .nav-links a {
-            color: var(--dark-text);
+            color: rgba(255, 255, 255, 0.85);
         }
         .nav-links a:not(.nav-cta)::after {
             content: '';
@@ -291,7 +285,7 @@
             color: var(--accent);
         }
         nav.scrolled .nav-links a:not(.nav-cta):hover {
-            color: var(--secondary);
+            color: var(--accent);
         }
         .nav-cta {
             display: inline-block;
@@ -311,12 +305,12 @@
             transform: translateY(-2px) scale(1.02);
         }
         nav.scrolled .nav-cta {
-            background: var(--secondary);
+            background: var(--accent);
             color: var(--primary) !important;
         }
         nav.scrolled .nav-cta:hover {
-            background: var(--primary) !important;
-            color: var(--white) !important;
+            background: var(--white) !important;
+            color: var(--primary) !important;
         }
 
         .hamburger {
@@ -340,7 +334,7 @@
             transform-origin: center;
         }
         nav.scrolled .hamburger span {
-            background: var(--primary);
+            background: var(--white);
         }
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
@@ -352,7 +346,7 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* ===== MOBILE OVERLAY — refined ===== */
+        /* ===== MOBILE OVERLAY ===== */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -885,10 +879,11 @@
             grid-column: span 1;
         }
 
-        /* ===== WHY AFRICA ===== */
+        /* ===== WHY AFRICA — static, no parallax ===== */
         .why-africa {
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
         }
         .why-africa-bg {
             position: absolute;
@@ -896,7 +891,7 @@
             background-image: url('images/why-africa-bg.jpg');
             background-size: cover;
             background-position: center 45%;
-            will-change: transform;
+            /* no transform, static */
         }
         .why-africa-bg::after {
             content: '';
@@ -1473,7 +1468,7 @@
             margin: 0;
         }
 
-        /* ===== MAP — blue overlay with pin ===== */
+        /* ===== MAP — taller to match form ===== */
         .inquiry-map {
             margin-top: 2.5rem;
             border-radius: 8px;
@@ -1481,7 +1476,8 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             background: var(--primary);
             position: relative;
-            height: 320px;
+            height: 480px;
+            min-height: 320px;
         }
         .inquiry-map iframe {
             display: block;
@@ -1523,7 +1519,7 @@
             }
         }
 
-        /* ===== INQUIRY FORM — transparent ===== */
+        /* ===== INQUIRY FORM ===== */
         .inquiry-form {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(4px);
@@ -1948,6 +1944,9 @@
             .section-heading h2 {
                 min-height: 3.8rem;
             }
+            .inquiry-map {
+                height: 380px;
+            }
         }
         @media (max-width: 768px) {
             .nav-links {
@@ -1975,6 +1974,13 @@
             }
             .why-grid {
                 align-items: start;
+            }
+            /* Why Africa — taller on mobile */
+            .why-africa-content {
+                padding: 80px 0 100px;
+            }
+            .why-africa {
+                min-height: auto;
             }
             .programs-grid {
                 grid-template-columns: 1fr;
@@ -2014,7 +2020,8 @@
                 min-height: 3.4rem;
             }
             .inquiry-map {
-                height: 240px;
+                height: 300px;
+                min-height: 240px;
             }
             .mobile-overlay .mobile-link {
                 font-size: 1.2rem;
@@ -2081,7 +2088,8 @@
                 padding: 1.5rem 1rem;
             }
             .inquiry-map {
-                height: 180px;
+                height: 220px;
+                min-height: 180px;
             }
             .inquiry-grid {
                 gap: 2rem;
@@ -2109,6 +2117,10 @@
             }
             .mobile-overlay {
                 gap: 1.2rem;
+            }
+            /* Why Africa extra mobile height */
+            .why-africa-content {
+                padding: 60px 0 80px;
             }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -2180,7 +2192,7 @@
         </div>
     </nav>
 
-    <!-- MOBILE OVERLAY — refined -->
+    <!-- MOBILE OVERLAY -->
     <div class="mobile-overlay" id="mobileOverlay">
         <div class="mobile-brand">Archer Africa</div>
         <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
@@ -2339,7 +2351,7 @@
         </div>
     </section>
 
-    <!-- WHY AFRICA -->
+    <!-- WHY AFRICA — static background, no parallax -->
     <section id="why-africa" class="why-africa">
         <div class="why-africa-bg" id="whyBg"></div>
         <div class="why-africa-content">
@@ -2373,7 +2385,7 @@
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">How We Work With Universities</div>
-                <h2>A Partnership Built on <br><em>Co-Design</em></h2>
+                <h2>A Partnership Built on <em>Co-Design</em></h2>
                 <p>We know that universities need confidence before committing to international programmes. Our process is designed to be transparent, collaborative, and strategically aligned from the very first conversation.</p>
             </div>
             <div class="how-steps">
@@ -2453,7 +2465,7 @@
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-eyebrow" style="justify-content:center;display:inline-flex;">The People Behind the Work</div>
-                <h2>Meet Our Expert Team</h2>
+                <h2>Meet Our <em>Expert Team</em></h2>
                 <p>Experienced professionals dedicated to educational excellence and cultural understanding</p>
             </div>
             <div class="team-grid">
@@ -2534,7 +2546,7 @@
                         <div class="trust-item"><div class="trust-dot"></div><p>Transparent process — no pressure, no generic proposals</p></div>
                         <div class="trust-item"><div class="trust-dot"></div><p>We typically respond within two business days</p></div>
                     </div>
-                    <!-- Map — blue overlay with pin -->
+                    <!-- Map — taller to match form -->
                     <div class="inquiry-map reveal">
                         <div class="map-pin">📍</div>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.578549622208!2d28.03986231503211!3d-26.14321848342588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1c7e8f5b8f%3A0x2c5a8f8b6f0b3a2d!2sJohannesburg%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Archer Africa's location in Johannesburg"></iframe>
@@ -2714,15 +2726,9 @@
             });
         });
 
-        // Why Africa parallax
-        const whyBg = document.getElementById('whyBg');
-        if (whyBg) {
-            window.addEventListener('scroll', () => {
-                const rect = whyBg.parentElement.getBoundingClientRect();
-                const offset = rect.top * 0.18;
-                whyBg.style.transform = `translateY(${offset}px)`;
-            }, { passive: true });
-        }
+        // Why Africa — static background (no parallax), remove transform
+        // The background is static by default; we just ensure no transform is applied.
+        // No scroll listener needed for parallax.
 
         // Form submission
         document.getElementById('inquiryForm').addEventListener('submit', function(e) {
