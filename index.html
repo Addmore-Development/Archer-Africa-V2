@@ -22,16 +22,8 @@
             --t: 0.3s;
         }
 
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             font-size: 16px;
@@ -40,24 +32,11 @@
             background: var(--white);
             overflow-x: hidden;
         }
-        img {
-            display: block;
-            max-width: 100%;
-        }
-        a {
-            text-decoration: none;
-        }
-        button {
-            font-family: inherit;
-            cursor: pointer;
-        }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; }
 
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
         .section-eyebrow {
             display: inline-flex;
@@ -78,2098 +57,599 @@
             flex-shrink: 0;
         }
 
-        .section-pad {
-            padding: 100px 0;
-        }
-        .section-pad-sm {
-            padding: 72px 0;
-        }
-
-        .gold-divider {
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            opacity: 0.25;
-        }
+        .section-pad { padding: 100px 0; }
+        .section-pad-sm { padding: 72px 0; }
 
         .reveal {
             opacity: 0;
             transform: translateY(28px);
             transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
         }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 {
-            transition-delay: 0.1s;
-        }
-        .reveal-delay-2 {
-            transition-delay: 0.2s;
-        }
-        .reveal-delay-3 {
-            transition-delay: 0.3s;
-        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
 
-        /* ===== SECTION HEADINGS — global centered style ===== */
+        /* ===== SECTION HEADINGS ===== */
         .section-heading {
             text-align: center;
             margin: 0 auto 3rem;
             max-width: 800px;
         }
-        .section-heading .section-eyebrow {
-            justify-content: center;
-            display: inline-flex;
-        }
+        .section-heading .section-eyebrow { justify-content: center; display: inline-flex; }
         .section-heading h2 {
             font-size: clamp(2.2rem, 3.5vw, 3.2rem);
             font-weight: 700;
             color: var(--primary);
-            line-height: 1.2;
+            line-height: 1.25;
             margin: 1rem 0 1rem;
             letter-spacing: -0.02em;
-            min-height: 4.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 0.2rem;
+            gap: 0.3em;
         }
-        .section-heading h2 em {
-            font-style: italic;
-            color: var(--secondary);
-        }
-        .section-heading p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            max-width: 640px;
-            margin: 0 auto;
-        }
+        .section-heading h2 em { font-style: italic; color: var(--secondary); }
+        .section-heading p { color: var(--gray); font-size: 0.95rem; line-height: 1.8; max-width: 640px; margin: 0 auto; }
 
         /* ===== SCROLL PROGRESS ===== */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 9999;
-            height: 3px;
-            pointer-events: none;
-        }
-        .scroll-progress-bar {
-            height: 100%;
-            width: 0%;
-            background: var(--accent);
-            transition: width 0.08s ease;
-        }
+        .scroll-progress { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; height: 3px; pointer-events: none; }
+        .scroll-progress-bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.08s ease; }
 
-        /* ===== NAV — unified with hero ===== */
+        /* ===== NAV — transparent, sits on top of shared hero image ===== */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 900;
-            padding: 0.9rem 0;
-            transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease), padding var(--t) var(--ease), border-bottom var(--t) var(--ease);
-            box-shadow: none;
+            padding: 1rem 0;
+            transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease), padding var(--t) var(--ease);
             background: transparent;
-            overflow: hidden;
-            border-bottom: 1px solid transparent;
         }
         nav.scrolled {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(27, 58, 110, 0.88);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            background: var(--white);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.06), var(--shadow-sm);
+            padding: 0.75rem 0;
         }
-        nav .nav-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            background-image: url('images/hero-bg.jpg');
-            background-size: cover;
-            background-position: center 40%;
-            transition: opacity 0.5s var(--ease);
-        }
-        nav .nav-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary);
-            opacity: 0.78;
-        }
-        nav.scrolled .nav-bg {
-            opacity: 1;
-        }
-        nav .nav-white-bg {
-            display: none;
-        }
-        .nav-inner {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            display: flex; align-items: center; gap: 0.75rem;
             color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.5rem; font-weight: 700;
             transition: color var(--t) var(--ease);
         }
-        nav.scrolled .logo {
-            color: var(--white);
-        }
+        nav.scrolled .logo { color: var(--primary); }
         .logo-mark {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: var(--accent);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-weight: 800; font-size: 1.1rem;
             flex-shrink: 0;
             transition: background var(--t) var(--ease), color var(--t) var(--ease);
         }
-        nav.scrolled .logo-mark {
-            background: var(--accent);
-            color: var(--primary);
-        }
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: 0.02em;
-        }
+        nav.scrolled .logo-mark { background: var(--primary); color: var(--accent); }
+        .logo-text { font-weight: 700; font-size: 1.25rem; letter-spacing: 0.02em; }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
+        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
         .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em;
+            color: rgba(255,255,255,0.88);
             transition: color var(--t) var(--ease);
             position: relative;
         }
-        nav.scrolled .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
-        }
+        nav.scrolled .nav-links a { color: var(--dark-text); }
         .nav-links a:not(.nav-cta)::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
+            content: ''; position: absolute; bottom: -3px; left: 0;
+            width: 100%; height: 1px; background: var(--accent);
+            transform: scaleX(0); transform-origin: left;
             transition: transform var(--t) var(--ease);
         }
-        .nav-links a:not(.nav-cta):hover::after {
-            transform: scaleX(1);
-        }
-        .nav-links a:not(.nav-cta):hover {
-            color: var(--accent);
-        }
-        nav.scrolled .nav-links a:not(.nav-cta):hover {
-            color: var(--accent);
-        }
+        .nav-links a:not(.nav-cta):hover::after { transform: scaleX(1); }
+        .nav-links a:not(.nav-cta):hover { color: var(--accent); }
+        nav.scrolled .nav-links a:not(.nav-cta):hover { color: var(--secondary); }
         .nav-cta {
-            display: inline-block;
-            padding: 0.6rem 1.4rem;
-            background: var(--accent);
-            color: var(--primary) !important;
-            font-weight: 700 !important;
-            font-size: 0.75rem !important;
-            letter-spacing: 0.1em !important;
-            text-transform: uppercase;
+            display: inline-block; padding: 0.6rem 1.4rem;
+            background: var(--accent); color: var(--primary) !important;
+            font-weight: 700 !important; font-size: 0.75rem !important;
+            letter-spacing: 0.1em !important; text-transform: uppercase;
             border-radius: 6px;
             transition: background var(--t) var(--ease), transform var(--t) var(--ease) !important;
         }
-        .nav-cta:hover {
-            background: var(--white) !important;
-            color: var(--primary) !important;
-            transform: translateY(-2px) scale(1.02);
-        }
-        nav.scrolled .nav-cta {
-            background: var(--accent);
-            color: var(--primary) !important;
-        }
-        nav.scrolled .nav-cta:hover {
-            background: var(--white) !important;
-            color: var(--primary) !important;
-        }
+        .nav-cta:hover { background: var(--white) !important; color: var(--primary) !important; transform: translateY(-2px) scale(1.02); }
+        nav.scrolled .nav-cta { background: var(--secondary); }
+        nav.scrolled .nav-cta:hover { background: var(--primary) !important; color: var(--white) !important; }
 
         .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 4px;
-            min-width: 44px;
-            min-height: 44px;
-            align-items: center;
-            justify-content: center;
+            display: none; flex-direction: column; gap: 5px; cursor: pointer;
+            padding: 4px; min-width: 44px; min-height: 44px;
+            align-items: center; justify-content: center;
         }
         .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--white);
-            border-radius: 1px;
+            display: block; width: 24px; height: 2px;
+            background: var(--white); border-radius: 1px;
             transition: transform var(--t) var(--ease), opacity var(--t) var(--ease), background var(--t) var(--ease);
             transform-origin: center;
         }
-        nav.scrolled .hamburger span {
-            background: var(--white);
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        nav.scrolled .hamburger span { background: var(--primary); }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* ===== MOBILE OVERLAY ===== */
         .mobile-overlay {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background: rgba(27, 58, 110, 0.97);
             z-index: 950;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             gap: 1.8rem;
             transform: translateX(100%);
             transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
             padding: 2rem;
         }
-        .mobile-overlay.open {
-            transform: translateX(0);
-        }
+        .mobile-overlay.open { transform: translateX(0); }
         .mobile-overlay .mobile-link {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.85);
-            letter-spacing: 0.06em;
+            font-size: 1.4rem; font-weight: 500;
+            color: rgba(255,255,255,0.85); letter-spacing: 0.06em;
             transition: color var(--t) var(--ease), transform var(--t) var(--ease);
-            position: relative;
-            padding: 0.25rem 0;
+            position: relative; padding: 0.25rem 0;
         }
-        .mobile-overlay .mobile-link:hover {
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
+        .mobile-overlay .mobile-link:hover { color: var(--accent); transform: translateY(-2px); }
         .mobile-overlay .mobile-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            width: 0; height: 2px; background: var(--accent);
             transition: width var(--t) var(--ease), left var(--t) var(--ease);
         }
-        .mobile-overlay .mobile-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
+        .mobile-overlay .mobile-link:hover::after { width: 100%; left: 0; }
         .mobile-overlay .mobile-cta-btn {
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            background: var(--accent);
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            border-radius: 8px;
+            display: inline-block; padding: 0.8rem 2.5rem;
+            background: var(--accent); color: var(--primary);
+            font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+            border-radius: 8px; margin-top: 0.5rem; border: 2px solid var(--accent);
             transition: background var(--t) var(--ease), transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
-            margin-top: 0.5rem;
-            border: 2px solid var(--accent);
         }
         .mobile-overlay .mobile-cta-btn:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
+            background: transparent; color: var(--accent);
+            transform: translateY(-3px); box-shadow: 0 8px 24px rgba(212,175,55,0.2);
         }
         .mobile-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            color: var(--white);
-            font-size: 2rem;
-            line-height: 1;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%; color: var(--white); font-size: 2rem; line-height: 1;
+            width: 48px; height: 48px; min-width: 48px; min-height: 48px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
             transition: background var(--t) var(--ease), transform var(--t) var(--ease);
-            min-width: 48px;
-            min-height: 48px;
         }
-        .mobile-close:hover {
-            background: rgba(212, 175, 55, 0.2);
-            transform: rotate(90deg);
-        }
-        .mobile-overlay .mobile-brand {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 0.04em;
-        }
-        .mobile-overlay .mobile-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--accent);
-            opacity: 0.3;
-            border-radius: 2px;
-            margin: 0.3rem 0;
-        }
-        .mobile-overlay .mobile-sub {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.35);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-top: 0.5rem;
-        }
+        .mobile-close:hover { background: rgba(212,175,55,0.2); transform: rotate(90deg); }
+        .mobile-overlay .mobile-brand { position: absolute; top: 1.5rem; left: 1.5rem; font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+        .mobile-overlay .mobile-divider { width: 60px; height: 2px; background: var(--accent); opacity: 0.3; border-radius: 2px; margin: 0.3rem 0; }
+        .mobile-overlay .mobile-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.5rem; }
 
-        /* ===== HERO ===== */
+        /* ===== HERO — nav floats transparently over this shared background ===== */
         .hero {
-            background: var(--primary);
             color: var(--white);
-            padding: 140px 2rem 100px;
+            padding: 0 2rem;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; overflow: hidden;
+            background: var(--primary);
         }
         .hero-bg-img {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background-image: url('images/hero-bg.jpg');
-            background-size: cover;
-            background-position: center 40%;
+            background-size: cover; background-position: center 40%;
             z-index: 0;
         }
         .hero-bg-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary);
-            opacity: 0.78;
+            content: ''; position: absolute; inset: 0;
+            background: var(--primary); opacity: 0.78;
         }
         .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 820px;
-            margin: 0 auto;
-            text-align: center;
+            position: relative; z-index: 1;
+            max-width: 820px; margin: 0 auto; text-align: center;
+            padding-top: 80px;
         }
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            margin-bottom: 1.5rem; font-weight: 800;
+            line-height: 1.15; letter-spacing: -0.02em;
         }
-        .hero h1 em {
-            font-style: italic;
-            color: var(--accent);
-        }
+        .hero h1 em { font-style: italic; color: var(--accent); }
         .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            line-height: 1.7;
-            max-width: 680px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.15rem; margin-bottom: 2.5rem;
+            opacity: 0.88; line-height: 1.75;
+            max-width: 660px; margin-left: auto; margin-right: auto;
         }
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-        }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
         .btn-primary {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--accent);
-            color: var(--primary);
-            font-size: 0.88rem;
-            font-weight: 700;
-            border: 2px solid var(--accent);
-            border-radius: 6px;
+            display: inline-block; padding: 1rem 2.5rem;
+            background: var(--accent); color: var(--primary);
+            font-size: 0.88rem; font-weight: 700;
+            border: 2px solid var(--accent); border-radius: 6px;
             transition: background var(--t) var(--ease), color var(--t) var(--ease), transform var(--t) var(--ease);
-            cursor: pointer;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
+            cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase;
         }
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
+        .btn-primary:hover { background: transparent; color: var(--accent); transform: translateY(-3px); }
         .btn-outline {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--white);
-            font-size: 0.88rem;
-            font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 6px;
+            display: inline-block; padding: 1rem 2.5rem;
+            background: transparent; color: var(--white);
+            font-size: 0.88rem; font-weight: 700;
+            border: 2px solid rgba(255,255,255,0.5); border-radius: 6px;
             transition: border-color var(--t) var(--ease), color var(--t) var(--ease), transform var(--t) var(--ease);
-            cursor: pointer;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
+            cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase;
         }
-        .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
         .hero-stats {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            gap: 0;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.04);
-            max-width: 600px;
-            margin: 0 auto;
+            position: relative; z-index: 1;
+            display: flex; gap: 0;
+            border: 1px solid rgba(255,255,255,0.12); border-radius: 8px;
+            overflow: hidden; background: rgba(255,255,255,0.04);
+            max-width: 600px; margin: 0 auto;
         }
-        .hero-stat {
-            flex: 1;
-            padding: 1.5rem 1.25rem;
-            text-align: center;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .hero-stat:last-child {
-            border-right: none;
-        }
-        .hero-stat-num {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 0.35rem;
-        }
-        .hero-stat-label {
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.55);
-        }
+        .hero-stat { flex: 1; padding: 1.5rem 1.25rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.35rem; }
+        .hero-stat-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
 
         /* ===== BACK TO TOP ===== */
         .back-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 800;
-            width: 44px;
-            height: 44px;
-            background: var(--primary);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 800;
+            width: 44px; height: 44px; background: var(--primary);
+            border: 1px solid rgba(212,175,55,0.3); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; pointer-events: none;
             transition: opacity var(--t) var(--ease), transform var(--t) var(--ease), background var(--t) var(--ease);
         }
-        .back-top.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .back-top:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-        .back-top svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 2;
-        }
+        .back-top.visible { opacity: 1; pointer-events: all; }
+        .back-top:hover { background: var(--secondary); transform: translateY(-3px); }
+        .back-top svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2; }
 
         /* ===== MARQUEE ===== */
         .marquee-strip {
             background: var(--primary);
-            border-top: 1px solid rgba(212, 175, 55, 0.18);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-            padding: 1rem 0;
-            overflow: hidden;
+            border-top: 1px solid rgba(212,175,55,0.18);
+            border-bottom: 1px solid rgba(212,175,55,0.18);
+            padding: 1rem 0; overflow: hidden;
         }
-        .marquee-inner {
-            display: flex;
-            white-space: nowrap;
-            animation: marquee 34s linear infinite;
-        }
-        .marquee-inner:hover {
-            animation-play-state: paused;
-        }
-        .marquee-inner span {
-            font-size: 0.62rem;
-            font-weight: 600;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.48);
-            padding: 0 1.75rem;
-        }
-        .marquee-inner .dot {
-            color: var(--accent);
-            padding: 0;
-            opacity: 0.55;
-        }
-        @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
+        .marquee-inner { display: flex; white-space: nowrap; animation: marquee 34s linear infinite; }
+        .marquee-inner:hover { animation-play-state: paused; }
+        .marquee-inner span { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.48); padding: 0 1.75rem; }
+        .marquee-inner .dot { color: var(--accent); padding: 0; opacity: 0.55; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* ===== ABOUT ===== */
-        .about {
-            background: var(--light-bg);
-        }
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .about-text h3 {
-            font-size: clamp(2rem, 3vw, 2.8rem);
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--primary);
-            margin: 0 0 1.75rem;
-        }
-        .about-text h3 span {
-            font-style: italic;
-            color: var(--secondary);
-        }
-        .about-text p {
-            color: var(--gray);
-            line-height: 1.85;
-            margin-bottom: 1.25rem;
-            font-size: 0.95rem;
-        }
-        .about-text p strong {
-            color: var(--dark-text);
-            font-weight: 600;
-        }
+        .about { background: var(--light-bg); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text h3 { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.1; color: var(--primary); margin: 0 0 1.75rem; }
+        .about-text h3 span { font-style: italic; color: var(--secondary); }
+        .about-text p { color: var(--gray); line-height: 1.85; margin-bottom: 1.25rem; font-size: 0.95rem; }
+        .about-text p strong { color: var(--dark-text); font-weight: 600; }
         .highlight-box {
-            margin-top: 2rem;
-            padding: 1.75rem 2rem;
-            background: var(--white);
-            border-left: 4px solid var(--secondary);
-            border-radius: 0 6px 6px 0;
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.8;
+            margin-top: 2rem; padding: 1.75rem 2rem;
+            background: var(--white); border-left: 4px solid var(--secondary);
+            border-radius: 0 6px 6px 0; color: var(--gray); font-size: 0.95rem; line-height: 1.8;
         }
-        .highlight-box strong {
-            color: var(--primary);
-        }
-        .about-pillars {
-            display: grid;
-            gap: 1px;
-            background: #e2ddd8;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .pillar {
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-            padding: 1.5rem;
-            background: var(--white);
-            transition: background var(--t) var(--ease);
-        }
-        .pillar:hover {
-            background: #fdfcfb;
-        }
-        .pillar-num {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-            flex-shrink: 0;
-            width: 2rem;
-            opacity: 0.85;
-        }
-        .pillar-text h4 {
-            font-size: 0.73rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 0.4rem;
-        }
-        .pillar-text p {
-            font-size: 0.87rem;
-            line-height: 1.7;
-            color: var(--gray);
-            margin: 0;
-        }
+        .highlight-box strong { color: var(--primary); }
+        .about-pillars { display: grid; gap: 1px; background: #e2ddd8; border-radius: 8px; overflow: hidden; }
+        .pillar { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.5rem; background: var(--white); transition: background var(--t) var(--ease); }
+        .pillar:hover { background: #fdfcfb; }
+        .pillar-num { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; flex-shrink: 0; width: 2rem; opacity: 0.85; }
+        .pillar-text h4 { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.4rem; }
+        .pillar-text p { font-size: 0.87rem; line-height: 1.7; color: var(--gray); margin: 0; }
 
         /* ===== PROGRAMS ===== */
-        .programs {
-            background: var(--white);
-        }
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
+        .programs { background: var(--white); }
+        .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .program-card {
-            background: var(--white);
-            border: 1px solid #e8e4df;
-            border-radius: 8px;
+            background: var(--white); border: 1px solid #e8e4df; border-radius: 8px;
             cursor: pointer;
             transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease), transform var(--t) var(--ease);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
         .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--t) var(--ease);
-            z-index: 1;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--accent); transform: scaleX(0); transform-origin: left;
+            transition: transform var(--t) var(--ease); z-index: 1;
         }
-        .program-card:hover::before {
-            transform: scaleX(1);
-        }
-        .program-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 16px 40px rgba(27, 58, 110, 0.13);
-            transform: translateY(-6px);
-        }
-        .card-img {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.55s var(--ease-out);
-            display: block;
-        }
-        .program-card:hover .card-img img {
-            transform: scale(1.05);
-        }
-        .card-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary);
-            opacity: 0.28;
-            transition: opacity var(--t) var(--ease);
-        }
-        .program-card:hover .card-img::after {
-            opacity: 0.18;
-        }
-        .card-body {
-            padding: 1.6rem 1.75rem 1.75rem;
-        }
-        .program-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-            line-height: 1.25;
-        }
-        .program-for {
-            font-size: 0.66rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 0.85rem;
-        }
-        .program-card p {
-            font-size: 0.88rem;
-            color: var(--gray);
-            line-height: 1.75;
-            margin-bottom: 1.1rem;
-        }
-        .program-themes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            margin-bottom: 1.25rem;
-        }
-        .program-theme {
-            font-size: 0.6rem;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 0.22rem 0.65rem;
-            border: 1px solid #ddd8d0;
-            color: var(--gray);
-            border-radius: 20px;
-        }
-        .program-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--secondary);
-            letter-spacing: 0.04em;
-            transition: gap var(--t) var(--ease), color var(--t) var(--ease);
-        }
-        .program-link:hover {
-            gap: 0.85rem;
-            color: var(--primary);
-        }
-        .program-card.wide {
-            grid-column: span 1;
-        }
+        .program-card:hover::before { transform: scaleX(1); }
+        .program-card:hover { border-color: rgba(212,175,55,0.3); box-shadow: 0 16px 40px rgba(27,58,110,0.13); transform: translateY(-6px); }
+        .card-img { width: 100%; height: 200px; overflow: hidden; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease-out); display: block; }
+        .program-card:hover .card-img img { transform: scale(1.05); }
+        .card-img::after { content: ''; position: absolute; inset: 0; background: var(--primary); opacity: 0.28; transition: opacity var(--t) var(--ease); }
+        .program-card:hover .card-img::after { opacity: 0.18; }
+        .card-body { padding: 1.6rem 1.75rem 1.75rem; }
+        .program-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem; line-height: 1.25; }
+        .program-for { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.85rem; }
+        .program-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.75; margin-bottom: 1.1rem; }
+        .program-themes { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
+        .program-theme { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.22rem 0.65rem; border: 1px solid #ddd8d0; color: var(--gray); border-radius: 20px; }
+        .program-link { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.78rem; font-weight: 600; color: var(--secondary); letter-spacing: 0.04em; transition: gap var(--t) var(--ease), color var(--t) var(--ease); }
+        .program-link:hover { gap: 0.85rem; color: var(--primary); }
 
-        /* ===== WHY AFRICA — static, no parallax ===== */
-        .why-africa {
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-        }
+        /* ===== WHY AFRICA — static background (no parallax) ===== */
+        .why-africa { position: relative; overflow: hidden; }
         .why-africa-bg {
-            position: absolute;
-            inset: 0;
+            position: absolute; inset: 0;
             background-image: url('images/why-africa-bg.jpg');
-            background-size: cover;
-            background-position: center 45%;
-            /* no transform, static */
+            background-size: cover; background-position: center 45%;
+            /* static — no background-attachment: fixed */
         }
-        .why-africa-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary);
-            opacity: 0.78;
-        }
-        .why-africa-content {
-            position: relative;
-            z-index: 2;
-            padding: 100px 0;
-        }
-        .why-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: end;
-        }
-        .why-left {
-            display: flex;
-            flex-direction: column;
-        }
-        .why-left p {
-            color: rgba(255, 255, 255, 0.72);
-            font-size: 0.95rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
-        .why-left blockquote {
-            margin-top: auto;
-            padding: 2rem 1.75rem;
-            border-left: 4px solid var(--accent);
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 0 8px 8px 0;
-        }
-        .why-left blockquote p {
-            font-size: clamp(1.5rem, 2.2vw, 2.1rem);
-            font-style: italic;
-            font-weight: 500;
-            color: var(--accent);
-            line-height: 1.35;
-            margin: 0;
-        }
-        .why-right {
-            display: grid;
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .why-point {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 1.75rem 2rem;
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            transition: background var(--t) var(--ease);
-        }
-        .why-point:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .why-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 7px;
-        }
-        .why-point h4 {
-            font-size: 0.73rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-        .why-point p {
-            font-size: 0.87rem;
-            line-height: 1.75;
-            color: rgba(255, 255, 255, 0.6);
-            margin: 0;
-        }
-        .why-africa-top .section-eyebrow {
-            color: var(--accent);
-        }
-        .why-africa-top .section-eyebrow::before {
-            background: var(--accent);
-        }
+        .why-africa-bg::after { content: ''; position: absolute; inset: 0; background: var(--primary); opacity: 0.80; }
+        .why-africa-content { position: relative; z-index: 2; padding: 100px 0; }
+        .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .why-left { display: flex; flex-direction: column; }
+        .why-left p { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.9; margin-bottom: 1.5rem; }
+        .why-left blockquote { margin-top: auto; padding: 2rem 1.75rem; border-left: 4px solid var(--accent); background: rgba(255,255,255,0.06); border-radius: 0 8px 8px 0; }
+        .why-left blockquote p { font-size: clamp(1.35rem, 2.2vw, 2rem); font-style: italic; font-weight: 500; color: var(--accent); line-height: 1.4; margin: 0; }
+        .why-right { display: grid; gap: 1px; background: rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+        .why-point { background: rgba(255,255,255,0.04); padding: 1.75rem 2rem; display: flex; gap: 1.5rem; align-items: flex-start; transition: background var(--t) var(--ease); }
+        .why-point:hover { background: rgba(255,255,255,0.09); }
+        .why-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+        .why-point h4 { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 0.5rem; }
+        .why-point p { font-size: 0.87rem; line-height: 1.75; color: rgba(255,255,255,0.62); margin: 0; }
 
         /* ===== HOW WE WORK ===== */
-        .how-we-work {
-            background: var(--white);
-        }
-        .how-steps {
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-        }
-        .how-steps::before {
-            content: '';
-            position: absolute;
-            top: 42px;
-            left: calc(12.5%);
-            right: calc(12.5%);
-            height: 1px;
-            background: var(--accent);
-            opacity: 0.35;
-            z-index: 0;
-        }
-        .how-step {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0 1.5rem 2rem;
-        }
+        .how-we-work { background: var(--white); }
+        .how-steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+        .how-steps::before { content: ''; position: absolute; top: 42px; left: calc(12.5%); right: calc(12.5%); height: 1px; background: var(--accent); opacity: 0.35; z-index: 0; }
+        .how-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1.5rem 2rem; }
         .step-circle {
-            width: 84px;
-            height: 84px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-bottom: 1.75rem;
+            width: 84px; height: 84px; background: var(--primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-bottom: 1.75rem;
             transition: background var(--t) var(--ease), transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
-            position: relative;
-            z-index: 2;
+            position: relative; z-index: 2;
         }
-        .step-circle::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            border: 1px solid var(--accent);
-            opacity: 0.3;
-            transition: opacity var(--t) var(--ease);
-        }
-        .how-step:hover .step-circle {
-            background: var(--secondary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(27, 58, 110, 0.2);
-        }
-        .how-step:hover .step-circle::after {
-            opacity: 0.7;
-        }
-        .step-circle svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 1.5;
-        }
-        .step-num-label {
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.6rem;
-            opacity: 0.8;
-        }
-        .how-step h3 {
-            font-size: 0.88rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-        .how-step p {
-            font-size: 0.87rem;
-            line-height: 1.8;
-            color: var(--gray);
-        }
+        .step-circle::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--accent); opacity: 0.3; transition: opacity var(--t) var(--ease); }
+        .how-step:hover .step-circle { background: var(--secondary); transform: translateY(-4px); box-shadow: 0 12px 28px rgba(27,58,110,0.2); }
+        .how-step:hover .step-circle::after { opacity: 0.7; }
+        .step-circle svg { width: 28px; height: 28px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+        .step-num-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; opacity: 0.8; }
+        .how-step h3 { font-size: 0.88rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .how-step p { font-size: 0.87rem; line-height: 1.8; color: var(--gray); }
 
         /* ===== PARTNERS ===== */
-        .partners {
-            background: var(--light-bg);
-        }
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1px;
-            background: #e8e4df;
-            border: 1px solid #e8e4df;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .partner-logo {
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
-            min-height: 100px;
-            gap: 0.5rem;
-            transition: background var(--t) var(--ease), transform var(--t) var(--ease);
-        }
-        .partner-logo:hover {
-            background: var(--light-bg);
-            transform: translateY(-2px);
-        }
-        .partner-badge {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-        .partner-badge.navy {
-            background: var(--primary);
-            color: var(--accent);
-        }
-        .partner-badge.gold {
-            background: var(--accent);
-            color: var(--primary);
-        }
-        .partner-name {
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 1.4;
-            color: var(--gray);
-        }
+        .partners { background: var(--light-bg); }
+        .partners-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: #e8e4df; border: 1px solid #e8e4df; border-radius: 8px; overflow: hidden; }
+        .partner-logo { background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem; min-height: 100px; gap: 0.5rem; transition: background var(--t) var(--ease), transform var(--t) var(--ease); }
+        .partner-logo:hover { background: var(--light-bg); transform: translateY(-2px); }
+        .partner-badge { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; }
+        .partner-badge.navy { background: var(--primary); color: var(--accent); }
+        .partner-badge.gold { background: var(--accent); color: var(--primary); }
+        .partner-name { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; line-height: 1.4; color: var(--gray); }
 
         /* ===== TESTIMONIALS ===== */
-        .testimonials {
-            background: var(--white);
-        }
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        .testimonial-card {
-            background: var(--light-bg);
-            border-radius: 8px;
-            padding: 2.25rem;
-            border: 1px solid #e8e4df;
-            border-left: 3px solid transparent;
-            transition: box-shadow var(--t) var(--ease), transform var(--t) var(--ease), border-color var(--t) var(--ease);
-        }
-        .testimonial-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
-            border-left-color: var(--accent);
-        }
-        .quote-mark {
-            font-size: 4.5rem;
-            color: var(--accent);
-            line-height: 0.6;
-            margin-bottom: 1.5rem;
-            display: block;
-            opacity: 0.65;
-        }
-        .testimonial-text {
-            font-size: 0.95rem;
-            line-height: 1.85;
-            color: var(--dark-text);
-            font-style: italic;
-            margin-bottom: 1.75rem;
-        }
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .author-avatar-initials {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.1rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-        .author-info h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.2rem;
-        }
-        .author-info p {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
+        .testimonials { background: var(--white); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .testimonial-card { background: var(--light-bg); border-radius: 8px; padding: 2.25rem; border: 1px solid #e8e4df; border-left: 3px solid transparent; transition: box-shadow var(--t) var(--ease), transform var(--t) var(--ease), border-color var(--t) var(--ease); }
+        .testimonial-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); border-left-color: var(--accent); }
+        .quote-mark { font-size: 4.5rem; color: var(--accent); line-height: 0.6; margin-bottom: 1.5rem; display: block; opacity: 0.65; }
+        .testimonial-text { font-size: 0.95rem; line-height: 1.85; color: var(--dark-text); font-style: italic; margin-bottom: 1.75rem; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar-initials { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem; font-weight: 600; flex-shrink: 0; }
+        .author-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 0.2rem; }
+        .author-info p { font-size: 0.8rem; color: var(--gray); }
 
         /* ===== TEAM ===== */
-        .team {
-            background: var(--light-bg);
-        }
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-        .team-card {
-            background: var(--white);
-            border: 1px solid #e8e4df;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: box-shadow var(--t) var(--ease), transform var(--t) var(--ease);
-        }
-        .team-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-5px);
-        }
-        .team-image {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            transition: transform 0.55s var(--ease-out);
-        }
-        .team-card:hover .team-image img {
-            transform: scale(1.05);
-        }
-        .team-info {
-            padding: 1.5rem;
-        }
-        .team-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-        .team-role {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 0.75rem;
-        }
-        .team-bio {
-            font-size: 0.87rem;
-            color: var(--gray);
-            line-height: 1.7;
-        }
+        .team { background: var(--light-bg); }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .team-card { background: var(--white); border: 1px solid #e8e4df; border-radius: 8px; overflow: hidden; transition: box-shadow var(--t) var(--ease), transform var(--t) var(--ease); }
+        .team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-5px); }
+        .team-image { width: 100%; height: 220px; overflow: hidden; background: var(--primary); display: flex; align-items: center; justify-content: center; }
+        .team-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.55s var(--ease-out); }
+        .team-card:hover .team-image img { transform: scale(1.05); }
+        .team-info { padding: 1.5rem; }
+        .team-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.25rem; }
+        .team-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.75rem; }
+        .team-bio { font-size: 0.87rem; color: var(--gray); line-height: 1.7; }
 
         /* ===== FAQ ===== */
-        .faq {
-            background: var(--white);
-        }
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .faq-item {
-            background: var(--light-bg);
-            border: 1px solid #e8e4df;
-            border-radius: 8px;
-            margin-bottom: 0.75rem;
-            overflow: hidden;
-            transition: box-shadow var(--t) var(--ease);
-        }
-        .faq-item.active {
-            border-top: 2px solid var(--accent);
-            box-shadow: var(--shadow-sm);
-        }
-        .faq-item:not(.active):hover {
-            box-shadow: var(--shadow-sm);
-        }
-        .faq-question {
-            padding: 1.4rem 1.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            background: var(--primary);
-            transition: background var(--t) var(--ease);
-        }
-        .faq-item.active .faq-question {
-            background: var(--primary-dark);
-        }
-        .faq-question span:first-child {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-        .faq-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: border-color var(--t) var(--ease), transform var(--t) var(--ease), background var(--t) var(--ease);
-        }
-        .faq-item.active .faq-icon {
-            border-color: var(--accent);
-            background: var(--accent);
-            transform: rotate(180deg);
-        }
-        .faq-icon svg {
-            width: 12px;
-            height: 12px;
-            stroke: var(--white);
-            fill: none;
-            stroke-width: 2.5;
-            transition: stroke var(--t) var(--ease);
-        }
-        .faq-item.active .faq-icon svg {
-            stroke: var(--primary);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .faq-item.active .faq-answer {
-            max-height: 800px;
-        }
-        .faq-answer-content {
-            padding: 1.5rem 1.75rem;
-            color: var(--gray);
-            font-size: 0.93rem;
-            line-height: 1.85;
-            border-top: 1px solid #e8e4df;
-        }
+        .faq { background: var(--white); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--light-bg); border: 1px solid #e8e4df; border-radius: 8px; margin-bottom: 0.75rem; overflow: hidden; transition: box-shadow var(--t) var(--ease); }
+        .faq-item.active { border-top: 2px solid var(--accent); box-shadow: var(--shadow-sm); }
+        .faq-item:not(.active):hover { box-shadow: var(--shadow-sm); }
+        .faq-question { padding: 1.4rem 1.75rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; background: var(--primary); transition: background var(--t) var(--ease); }
+        .faq-item.active .faq-question { background: var(--primary-dark); }
+        .faq-question span:first-child { font-size: 0.95rem; font-weight: 600; color: var(--white); }
+        .faq-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color var(--t) var(--ease), transform var(--t) var(--ease), background var(--t) var(--ease); }
+        .faq-item.active .faq-icon { border-color: var(--accent); background: var(--accent); transform: rotate(180deg); }
+        .faq-icon svg { width: 12px; height: 12px; stroke: var(--white); fill: none; stroke-width: 2.5; transition: stroke var(--t) var(--ease); }
+        .faq-item.active .faq-icon svg { stroke: var(--primary); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-item.active .faq-answer { max-height: 800px; }
+        .faq-answer-content { padding: 1.5rem 1.75rem; color: var(--gray); font-size: 0.93rem; line-height: 1.85; border-top: 1px solid #e8e4df; }
 
         /* ===== INQUIRY ===== */
-        .inquiry {
-            background: var(--primary);
-            position: relative;
-            overflow: hidden;
-        }
-        .inquiry::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('images/inquiry-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            z-index: 0;
-        }
-        .inquiry .container {
-            position: relative;
-            z-index: 1;
-        }
-        .inquiry-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-        .inquiry-left .section-eyebrow {
-            color: var(--accent);
-        }
-        .inquiry-left .section-eyebrow::before {
-            background: var(--accent);
-        }
-        .inquiry-left h2 {
-            font-size: clamp(2.2rem, 3vw, 2.8rem);
-            font-weight: 700;
-            color: var(--white);
-            line-height: 1.1;
-            margin: 1.25rem 0 1.5rem;
-            letter-spacing: -0.02em;
-        }
-        .inquiry-left h2 em {
-            font-style: italic;
-            color: var(--accent);
-        }
-        .inquiry-left>p {
-            color: rgba(255, 255, 255, 0.65);
-            font-size: 0.95rem;
-            line-height: 1.85;
-            margin-bottom: 2.5rem;
-        }
-        .inquiry-contact-details {
-            margin-bottom: 2.5rem;
-            display: grid;
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .inquiry-contact-item {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-        .inquiry-contact-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--secondary);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .inquiry-contact-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--primary);
-            fill: none;
-            stroke-width: 1.5;
-        }
-        .inquiry-contact-text span {
-            display: block;
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 0.3rem;
-        }
-        .inquiry-contact-text p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin: 0;
-            line-height: 1.5;
-        }
-        .inquiry-trust {
-            display: grid;
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .trust-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 1rem 1.25rem;
-            display: flex;
-            gap: 0.75rem;
-            align-items: flex-start;
-        }
-        .trust-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 6px;
-        }
-        .trust-item p {
-            font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-            margin: 0;
-        }
+        .inquiry { background: var(--primary); position: relative; overflow: hidden; }
+        .inquiry::before { content: ''; position: absolute; inset: 0; background-image: url('images/inquiry-bg.jpg'); background-size: cover; background-position: center; opacity: 0.15; z-index: 0; }
+        .inquiry .container { position: relative; z-index: 1; }
+        .inquiry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: stretch; }
 
-        /* ===== MAP — taller to match form ===== */
+        /* Left column — flex so map can grow to fill remaining space */
+        .inquiry-left { display: flex; flex-direction: column; }
+        .inquiry-left .section-eyebrow { color: var(--accent); }
+        .inquiry-left .section-eyebrow::before { background: var(--accent); }
+        .inquiry-left h2 { font-size: clamp(2.2rem, 3vw, 2.8rem); font-weight: 700; color: var(--white); line-height: 1.1; margin: 1.25rem 0 1.5rem; letter-spacing: -0.02em; }
+        .inquiry-left h2 em { font-style: italic; color: var(--accent); }
+        .inquiry-left > p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.85; margin-bottom: 2.5rem; }
+        .inquiry-contact-details { margin-bottom: 1.5rem; display: grid; gap: 1px; background: rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+        .inquiry-contact-item { background: rgba(255,255,255,0.04); padding: 1.25rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+        .inquiry-contact-icon { width: 40px; height: 40px; background: var(--secondary); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .inquiry-contact-icon svg { width: 18px; height: 18px; stroke: var(--primary); fill: none; stroke-width: 1.5; }
+        .inquiry-contact-text span { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+        .inquiry-contact-text p { font-size: 0.9rem; color: rgba(255,255,255,0.8); margin: 0; line-height: 1.5; }
+        .inquiry-trust { display: grid; gap: 1px; background: rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden; margin-bottom: 1.5rem; flex-shrink: 0; }
+        .trust-item { background: rgba(255,255,255,0.03); padding: 1rem 1.25rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+        .trust-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+        .trust-item p { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0; }
+
+        /* Map — grows to fill whatever space remains in left column */
         .inquiry-map {
-            margin-top: 2.5rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            flex: 1;
+            min-height: 220px;
+            border-radius: 8px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.12);
             background: var(--primary);
             position: relative;
-            height: 480px;
-            min-height: 320px;
         }
-        .inquiry-map iframe {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: none;
-            filter: grayscale(0.3) contrast(1.05) brightness(0.85);
-        }
-        .inquiry-map::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary);
-            opacity: 0.35;
-            pointer-events: none;
-            transition: opacity var(--t) var(--ease);
-        }
-        .inquiry-map:hover::after {
-            opacity: 0.15;
-        }
-        .inquiry-map .map-pin {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            pointer-events: none;
-            font-size: 2.8rem;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-            animation: pulse-pin 2s ease-in-out infinite;
-        }
-        @keyframes pulse-pin {
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.12);
-            }
-        }
+        .inquiry-map iframe { display: block; width: 100%; height: 100%; border: none; filter: grayscale(0.3) contrast(1.05) brightness(0.85); position: absolute; inset: 0; }
+        .inquiry-map::after { content: ''; position: absolute; inset: 0; background: var(--primary); opacity: 0.35; pointer-events: none; transition: opacity var(--t) var(--ease); }
+        .inquiry-map:hover::after { opacity: 0.15; }
+        .inquiry-map .map-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; pointer-events: none; font-size: 2.8rem; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); animation: pulse-pin 2s ease-in-out infinite; }
+        @keyframes pulse-pin { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.12); } }
 
-        /* ===== INQUIRY FORM ===== */
+        /* Right column — form fills full height */
+        .inquiry-right { display: flex; flex-direction: column; }
         .inquiry-form {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(4px);
-            border-radius: 12px;
-            padding: 2.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            flex: 1;
+            background: rgba(255,255,255,0.06); backdrop-filter: blur(4px);
+            border-radius: 12px; padding: 2.75rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
         }
-        .inquiry-form .form-message {
-            display: none;
-            padding: 1rem 1.25rem;
-            border-radius: 6px;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        .inquiry-form .form-message.success {
-            background: rgba(212, 237, 218, 0.2);
-            color: #b8e6c4;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(212, 237, 218, 0.15);
-            display: block;
-        }
-        .inquiry-form .form-message.error {
-            background: rgba(248, 215, 218, 0.2);
-            color: #f5b7b7;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(248, 215, 218, 0.15);
-            display: block;
-        }
-        .inquiry-form .form-message.success svg {
-            stroke: #b8e6c4;
-        }
-        .inquiry-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        .inquiry-form .form-group {
-            margin-bottom: 1.25rem;
-        }
-        .inquiry-form .form-group label {
-            display: block;
-            font-size: 0.73rem;
-            font-weight: 700;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 0.5rem;
-        }
+        .inquiry-form .form-message { display: none; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600; }
+        .inquiry-form .form-message.success { background: rgba(212,237,218,0.2); color: #b8e6c4; backdrop-filter: blur(4px); border: 1px solid rgba(212,237,218,0.15); display: block; }
+        .inquiry-form .form-message.error { background: rgba(248,215,218,0.2); color: #f5b7b7; backdrop-filter: blur(4px); border: 1px solid rgba(248,215,218,0.15); display: block; }
+        .inquiry-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .inquiry-form .form-group { margin-bottom: 1.25rem; }
+        .inquiry-form .form-group label { display: block; font-size: 0.73rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; }
         .inquiry-form .form-group input,
         .inquiry-form .form-group select,
-        .inquiry-form .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 0.92rem;
-            color: var(--white);
-            background: rgba(255, 255, 255, 0.08);
-            transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t) var(--ease);
-        }
+        .inquiry-form .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 6px; font-family: inherit; font-size: 0.92rem; color: var(--white); background: rgba(255,255,255,0.08); transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t) var(--ease); }
         .inquiry-form .form-group input::placeholder,
-        .inquiry-form .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.35);
-        }
+        .inquiry-form .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
         .inquiry-form .form-group input:focus,
         .inquiry-form .form-group select:focus,
-        .inquiry-form .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
-        }
-        .inquiry-form .form-group select {
-            color: var(--white);
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-        }
-        .inquiry-form .form-group select option {
-            background: var(--primary);
-            color: var(--white);
-        }
-        .inquiry-form .form-group textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-        .inquiry-form .form-check {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-        .inquiry-form .form-check input[type="checkbox"] {
-            width: 17px;
-            height: 17px;
-            flex-shrink: 0;
-            margin-top: 2px;
-            accent-color: var(--secondary);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-        }
-        .inquiry-form .form-check label {
-            font-size: 0.83rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-        }
-        .inquiry-form .form-submit {
-            width: 100%;
-            padding: 1rem;
-            background: var(--secondary);
-            color: var(--primary);
-            border: none;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.13em;
-            text-transform: uppercase;
-            transition: background var(--t) var(--ease), transform var(--t) var(--ease), color var(--t) var(--ease);
-        }
-        .inquiry-form .form-submit:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-        .inquiry-form .form-note {
-            font-size: 0.78rem;
-            color: rgba(255, 255, 255, 0.35);
-            text-align: center;
-            margin-top: 0.75rem;
-        }
+        .inquiry-form .form-group textarea:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.12); box-shadow: 0 0 0 3px rgba(212,175,55,0.12); }
+        .inquiry-form .form-group select { color: var(--white); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-color: rgba(27,58,110,0.6); }
+        .inquiry-form .form-group select option { background: var(--primary); color: var(--white); }
+        .inquiry-form .form-group textarea { resize: vertical; min-height: 110px; }
+        .inquiry-form .form-check { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .inquiry-form .form-check input[type="checkbox"] { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; accent-color: var(--secondary); }
+        .inquiry-form .form-check label { font-size: 0.83rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .inquiry-form .form-submit { width: 100%; padding: 1rem; background: var(--secondary); color: var(--primary); border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; transition: background var(--t) var(--ease), transform var(--t) var(--ease), color var(--t) var(--ease); }
+        .inquiry-form .form-submit:hover { background: var(--white); color: var(--primary); transform: translateY(-2px); }
+        .inquiry-form .form-note { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-align: center; margin-top: 0.75rem; }
 
         /* ===== FOOTER ===== */
-        footer {
-            background: var(--primary-dark);
-            color: var(--white);
-            padding: 4rem 0 2rem;
-            border-top: 2px solid rgba(212, 175, 55, 0.15);
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2rem;
-        }
-        .footer-brand .logo {
-            color: var(--white);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .footer-brand .logo .logo-mark {
-            width: 36px;
-            height: 36px;
-            background: var(--accent);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        .footer-brand p {
-            font-size: 0.87rem;
-            color: rgba(255, 255, 255, 0.52);
-            line-height: 1.8;
-            max-width: 280px;
-            margin-top: 0.75rem;
-        }
-        .footer-section h4 {
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.25rem;
-        }
-        .footer-section ul {
-            list-style: none;
-        }
-        .footer-section ul li {
-            margin-bottom: 0.65rem;
-        }
-        .footer-section a {
-            font-size: 0.87rem;
-            color: rgba(255, 255, 255, 0.58);
-            transition: color var(--t) var(--ease);
-        }
-        .footer-section a:hover {
-            color: var(--white);
-        }
-        .footer-social {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            transition: border-color var(--t) var(--ease), background var(--t) var(--ease);
-        }
-        .footer-social a:hover {
-            border-color: var(--accent);
-            background: rgba(212, 175, 55, 0.1);
-        }
-        .footer-social svg {
-            width: 16px;
-            height: 16px;
-            stroke: rgba(255, 255, 255, 0.5);
-            fill: none;
-            stroke-width: 1.5;
-            transition: stroke var(--t) var(--ease);
-        }
-        .footer-social a:hover svg {
-            stroke: var(--accent);
-        }
-        .footer-bottom {
-            text-align: center;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.38);
-        }
+        footer { background: var(--primary-dark); color: var(--white); padding: 4rem 0 2rem; border-top: 2px solid rgba(212,175,55,0.15); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 2rem; }
+        .footer-brand .logo { color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .footer-brand .logo .logo-mark { width: 36px; height: 36px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+        .footer-brand p { font-size: 0.87rem; color: rgba(255,255,255,0.52); line-height: 1.8; max-width: 280px; margin-top: 0.75rem; }
+        .footer-section h4 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.65rem; }
+        .footer-section a { font-size: 0.87rem; color: rgba(255,255,255,0.58); transition: color var(--t) var(--ease); }
+        .footer-section a:hover { color: var(--white); }
+        .footer-social { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+        .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; transition: border-color var(--t) var(--ease), background var(--t) var(--ease); }
+        .footer-social a:hover { border-color: var(--accent); background: rgba(212,175,55,0.1); }
+        .footer-social svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.5); fill: none; stroke-width: 1.5; transition: stroke var(--t) var(--ease); }
+        .footer-social a:hover svg { stroke: var(--accent); }
+        .footer-bottom { text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.38); }
 
         /* ===== DETAIL PANEL ===== */
-        .prog-detail {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            display: flex;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.35s var(--ease);
-        }
-        .prog-detail.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .prog-detail-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(19, 45, 88, 0.62);
-        }
-        .prog-detail-panel {
-            position: relative;
-            margin-left: auto;
-            width: min(640px, 100%);
-            height: 100%;
-            background: var(--white);
-            overflow-y: auto;
-            transform: translateX(100%);
-            transition: transform 0.45s var(--ease-out);
-            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.18);
-        }
-        .prog-detail.open .prog-detail-panel {
-            transform: translateX(0);
-        }
-        .prog-detail-inner {
-            padding: 3rem 2.5rem;
-            min-height: 100%;
-        }
-        .prog-detail-close {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 2rem;
-        }
-        .close-btn {
-            width: 40px;
-            height: 40px;
-            border: 1.5px solid #e2ddd8;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background var(--t) var(--ease), border-color var(--t) var(--ease);
-        }
-        .close-btn svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--gray);
-            fill: none;
-            stroke-width: 2;
-            transition: stroke var(--t) var(--ease);
-        }
-        .close-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-        .close-btn:hover svg {
-            stroke: var(--white);
-        }
-        .detail-eyebrow {
-            font-size: 0.66rem;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 0.75rem;
-        }
-        .detail-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-        .detail-for {
-            font-size: 0.88rem;
-            color: var(--gray);
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e8e4df;
-        }
-        .detail-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: #e2ddd8;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-        .detail-meta-item {
-            background: var(--light-bg);
-            padding: 1rem 1.25rem;
-        }
-        .detail-meta-item span {
-            font-size: 0.63rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-        .detail-meta-item p {
-            font-size: 0.9rem;
-            color: var(--dark-text);
-            font-weight: 500;
-        }
-        .detail-section {
-            margin-bottom: 1.75rem;
-        }
-        .detail-section h3 {
-            font-size: 0.66rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--secondary);
-            margin-bottom: 0.75rem;
-        }
-        .detail-section p {
-            font-size: 0.92rem;
-            color: var(--gray);
-            line-height: 1.9;
-        }
-        .detail-themes-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-        .detail-theme {
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 0.27rem 0.82rem;
-            border: 1px solid #ddd8d0;
-            color: var(--gray);
-            border-radius: 20px;
-        }
-        .detail-cta {
-            width: 100%;
-            padding: 1rem;
-            background: var(--secondary);
-            color: var(--primary);
-            border: none;
-            border-radius: 6px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            letter-spacing: 0.13em;
-            text-transform: uppercase;
-            font-family: inherit;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: background var(--t) var(--ease), color var(--t) var(--ease);
-        }
-        .detail-cta:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
+        .prog-detail { position: fixed; inset: 0; z-index: 2000; display: flex; opacity: 0; pointer-events: none; transition: opacity 0.35s var(--ease); }
+        .prog-detail.open { opacity: 1; pointer-events: all; }
+        .prog-detail-backdrop { position: absolute; inset: 0; background: rgba(19,45,88,0.62); }
+        .prog-detail-panel { position: relative; margin-left: auto; width: min(640px, 100%); height: 100%; background: var(--white); overflow-y: auto; transform: translateX(100%); transition: transform 0.45s var(--ease-out); box-shadow: -8px 0 40px rgba(0,0,0,0.18); }
+        .prog-detail.open .prog-detail-panel { transform: translateX(0); }
+        .prog-detail-inner { padding: 3rem 2.5rem; min-height: 100%; }
+        .prog-detail-close { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
+        .close-btn { width: 40px; height: 40px; border: 1.5px solid #e2ddd8; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background var(--t) var(--ease), border-color var(--t) var(--ease); }
+        .close-btn svg { width: 14px; height: 14px; stroke: var(--gray); fill: none; stroke-width: 2; transition: stroke var(--t) var(--ease); }
+        .close-btn:hover { background: var(--primary); border-color: var(--primary); }
+        .close-btn:hover svg { stroke: var(--white); }
+        .detail-eyebrow { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.75rem; }
+        .detail-title { font-size: 2.2rem; font-weight: 700; color: var(--primary); line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .detail-for { font-size: 0.88rem; color: var(--gray); margin-bottom: 1.75rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e8e4df; }
+        .detail-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #e2ddd8; border-radius: 6px; overflow: hidden; margin-bottom: 2rem; }
+        .detail-meta-item { background: var(--light-bg); padding: 1rem 1.25rem; }
+        .detail-meta-item span { font-size: 0.63rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--secondary); display: block; margin-bottom: 0.3rem; }
+        .detail-meta-item p { font-size: 0.9rem; color: var(--dark-text); font-weight: 500; }
+        .detail-section { margin-bottom: 1.75rem; }
+        .detail-section h3 { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--secondary); margin-bottom: 0.75rem; }
+        .detail-section p { font-size: 0.92rem; color: var(--gray); line-height: 1.9; }
+        .detail-themes-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .detail-theme { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.27rem 0.82rem; border: 1px solid #ddd8d0; color: var(--gray); border-radius: 20px; }
+        .detail-cta { width: 100%; padding: 1rem; background: var(--secondary); color: var(--primary); border: none; border-radius: 6px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; font-family: inherit; cursor: pointer; margin-top: 1rem; transition: background var(--t) var(--ease), color var(--t) var(--ease); }
+        .detail-cta:hover { background: var(--primary); color: var(--white); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .programs-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .how-steps {
-                grid-template-columns: 1fr 1fr;
-            }
-            .how-steps::before {
-                display: none;
-            }
-            .partners-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .section-heading h2 {
-                min-height: 3.8rem;
-            }
-            .inquiry-map {
-                height: 380px;
-            }
+            .programs-grid { grid-template-columns: 1fr 1fr; }
+            .how-steps { grid-template-columns: 1fr 1fr; }
+            .how-steps::before { display: none; }
+            .partners-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .hero h1 {
-                font-size: 2.6rem;
-            }
-            .hero {
-                padding: 100px 1.5rem 80px;
-                min-height: 90vh;
-            }
-            .hero-stats {
-                flex-direction: row;
-                max-width: 100%;
-            }
-            .about-grid,
-            .why-grid,
-            .inquiry-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-            .why-grid {
-                align-items: start;
-            }
-            /* Why Africa — taller on mobile */
-            .why-africa-content {
-                padding: 80px 0 100px;
-            }
-            .why-africa {
-                min-height: auto;
-            }
-            .programs-grid {
-                grid-template-columns: 1fr;
-            }
-            .program-card.wide {
-                grid-column: span 1;
-            }
-            .testimonials-grid,
-            .team-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-            .footer-brand {
-                grid-column: span 2;
-            }
-            .how-steps {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-            .partners-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .inquiry-form {
-                padding: 2rem 1.5rem;
-            }
-            .section-pad {
-                padding: 72px 0;
-            }
-            .section-heading {
-                margin-bottom: 2.5rem;
-            }
-            .section-heading h2 {
-                font-size: clamp(1.8rem, 4vw, 2.6rem);
-                min-height: 3.4rem;
-            }
-            .inquiry-map {
-                height: 300px;
-                min-height: 240px;
-            }
-            .mobile-overlay .mobile-link {
-                font-size: 1.2rem;
-            }
-            .mobile-overlay {
-                gap: 1.5rem;
-            }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero { padding: 0 1.5rem; }
+            .hero-content { padding-top: 100px; padding-bottom: 40px; }
+            .hero-stats { flex-direction: row; max-width: 100%; }
+            .about-grid, .inquiry-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .inquiry-grid { align-items: start; }
+            .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .why-africa-content { padding: 80px 0 100px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .testimonials-grid, .team-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-brand { grid-column: span 2; }
+            .how-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .partners-grid { grid-template-columns: repeat(2, 1fr); }
+            .inquiry-form { padding: 2rem 1.5rem; }
+            .section-pad { padding: 72px 0; }
+            .section-heading { margin-bottom: 2.5rem; }
+            .section-heading h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+            .inquiry-map { min-height: 220px; flex: none; height: 260px; }
+            .mobile-overlay .mobile-link { font-size: 1.2rem; }
+            .mobile-overlay { gap: 1.5rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.1rem;
-            }
-            .hero-subtitle {
-                font-size: 1.05rem;
-            }
-            .hero-stats {
-                flex-direction: column;
-            }
-            .hero-stat {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            .hero-stat:last-child {
-                border-bottom: none;
-            }
-            .testimonials-grid,
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-brand {
-                grid-column: span 1;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .detail-meta {
-                grid-template-columns: 1fr;
-            }
-            .partners-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-                gap: 0.75rem;
-            }
-            .btn-primary,
-            .btn-outline {
-                width: 100%;
-                text-align: center;
-                padding: 0.9rem 1.5rem;
-            }
-            .how-steps {
-                grid-template-columns: 1fr;
-            }
-            .section-heading h2 {
-                font-size: 1.7rem;
-                min-height: 3rem;
-            }
-            .inquiry-form {
-                padding: 1.5rem 1rem;
-            }
-            .inquiry-map {
-                height: 220px;
-                min-height: 180px;
-            }
-            .inquiry-grid {
-                gap: 2rem;
-            }
-            .mobile-overlay .mobile-link {
-                font-size: 1.1rem;
-            }
-            .mobile-overlay .mobile-cta-btn {
-                padding: 0.7rem 2rem;
-                font-size: 0.75rem;
-            }
-            .mobile-close {
-                width: 40px;
-                height: 40px;
-                font-size: 1.6rem;
-                min-width: 40px;
-                min-height: 40px;
-                top: 1rem;
-                right: 1rem;
-            }
-            .mobile-overlay .mobile-brand {
-                font-size: 0.9rem;
-                top: 1rem;
-                left: 1rem;
-            }
-            .mobile-overlay {
-                gap: 1.2rem;
-            }
-            /* Why Africa extra mobile height */
-            .why-africa-content {
-                padding: 60px 0 80px;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-stats { flex-direction: column; }
+            .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .hero-stat:last-child { border-bottom: none; }
+            .testimonials-grid, .team-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-brand { grid-column: span 1; }
+            .form-row { grid-template-columns: 1fr; }
+            .detail-meta { grid-template-columns: 1fr; }
+            .partners-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-buttons { flex-direction: column; width: 100%; gap: 0.75rem; }
+            .btn-primary, .btn-outline { width: 100%; text-align: center; padding: 0.9rem 1.5rem; }
+            .how-steps { grid-template-columns: 1fr; }
+            .section-heading h2 { font-size: 1.7rem; }
+            .inquiry-form { padding: 1.5rem 1rem; }
+            .inquiry-map { height: 200px; }
+            .inquiry-grid { gap: 2rem; }
+            .mobile-overlay .mobile-link { font-size: 1.1rem; }
+            .mobile-overlay .mobile-cta-btn { padding: 0.7rem 2rem; font-size: 0.75rem; }
+            .mobile-close { width: 40px; height: 40px; font-size: 1.6rem; min-width: 40px; min-height: 40px; top: 1rem; right: 1rem; }
+            .mobile-overlay .mobile-brand { font-size: 0.9rem; top: 1rem; left: 1rem; }
+            .mobile-overlay { gap: 1.2rem; }
+            .why-africa-content { padding: 80px 0 120px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .marquee-inner {
-                animation: none;
-            }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .marquee-inner { animation: none; }
         }
 
         /* ===== ACCESSIBILITY ===== */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 0;
-            padding: 1rem 1.5rem;
-            background: var(--accent);
-            color: var(--primary);
-            font-weight: 700;
-            z-index: 9999;
-            border-radius: 0 0 4px 0;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-        .skip-link:focus {
-            top: 0;
-        }
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
     </style>
 </head>
 <body>
-    <!-- <a href="#about" class="skip-link">Skip to content</a> -->
     <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 
-    <!-- NAV -->
+    <!-- NAV — transparent, floats over shared hero background image -->
     <nav id="mainNav">
-        <div class="nav-bg"></div>
-        <div class="nav-white-bg"></div>
         <div class="container">
             <div class="nav-inner">
                 <a href="#" class="logo">
@@ -2195,7 +675,7 @@
     <!-- MOBILE OVERLAY -->
     <div class="mobile-overlay" id="mobileOverlay">
         <div class="mobile-brand">Archer Africa</div>
-        <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">&#10005;</button>
         <a href="#about" class="mobile-link">About</a>
         <a href="#programs" class="mobile-link">Programs</a>
         <a href="#why-africa" class="mobile-link">Why Africa</a>
@@ -2211,7 +691,7 @@
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
     </button>
 
-    <!-- HERO -->
+    <!-- HERO — background image lives here; nav is transparent on top of it -->
     <section class="hero">
         <div class="hero-bg-img"></div>
         <div class="hero-content">
@@ -2219,7 +699,7 @@
             <p class="hero-subtitle">Archer Africa partners with universities to design immersive international learning experiences — turning global education into lived experience across Africa, Europe, the UK, and the USA.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">Partner With Us</button>
-                <button class="btn-outline" onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})">Explore Programmes →</button>
+                <button class="btn-outline" onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})">Explore Programmes &#8594;</button>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat"><div class="hero-stat-num">12+</div><div class="hero-stat-label">African Countries</div></div>
@@ -2232,18 +712,18 @@
     <!-- MARQUEE -->
     <div class="marquee-strip" aria-hidden="true">
         <div class="marquee-inner">
-            <span>Study Tours</span><span class="dot">·</span>
-            <span>Executive Education</span><span class="dot">·</span>
-            <span>Online Learning Immersions</span><span class="dot">·</span>
-            <span>Institutional Partnerships</span><span class="dot">·</span>
-            <span>African Innovation Ecosystems</span><span class="dot">·</span>
-            <span>Global Classroom</span><span class="dot">·</span>
-            <span>Study Tours</span><span class="dot">·</span>
-            <span>Executive Education</span><span class="dot">·</span>
-            <span>Online Learning Immersions</span><span class="dot">·</span>
-            <span>Institutional Partnerships</span><span class="dot">·</span>
-            <span>African Innovation Ecosystems</span><span class="dot">·</span>
-            <span>Global Classroom</span><span class="dot">·</span>
+            <span>Study Tours</span><span class="dot">&#183;</span>
+            <span>Executive Education</span><span class="dot">&#183;</span>
+            <span>Online Learning Immersions</span><span class="dot">&#183;</span>
+            <span>Institutional Partnerships</span><span class="dot">&#183;</span>
+            <span>African Innovation Ecosystems</span><span class="dot">&#183;</span>
+            <span>Global Classroom</span><span class="dot">&#183;</span>
+            <span>Study Tours</span><span class="dot">&#183;</span>
+            <span>Executive Education</span><span class="dot">&#183;</span>
+            <span>Online Learning Immersions</span><span class="dot">&#183;</span>
+            <span>Institutional Partnerships</span><span class="dot">&#183;</span>
+            <span>African Innovation Ecosystems</span><span class="dot">&#183;</span>
+            <span>Global Classroom</span><span class="dot">&#183;</span>
         </div>
     </div>
 
@@ -2282,81 +762,66 @@
                 <p>Every programme is co-designed with partner universities and aligned to specific academic goals and internationalisation strategies.</p>
             </div>
             <div class="programs-grid">
-                <!-- Card 1 -->
                 <div class="program-card reveal" onclick="openDetail(0)" role="button" tabindex="0" aria-label="Learn more about Global Innovation Immersion" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(0)">
-                    <div class="card-img">
-                        <img src="images/program-innovation.jpg" alt="Innovation hub with people collaborating" loading="lazy">
-                    </div>
+                    <div class="card-img"><img src="images/program-innovation.jpg" alt="Innovation hub with people collaborating" loading="lazy"></div>
                     <div class="card-body">
                         <h3>Global Innovation Immersion</h3>
-                        <div class="program-for">MBA · Graduate · Executive</div>
+                        <div class="program-for">MBA &#183; Graduate &#183; Executive</div>
                         <p>Students engage with African startup ecosystems, venture builders, and innovation hubs — meeting entrepreneurs, investors, and technology leaders.</p>
                         <div class="program-themes"><span class="program-theme">Entrepreneurship</span><span class="program-theme">Fintech</span><span class="program-theme">Social Innovation</span><span class="program-theme">Emerging Markets</span></div>
-                        <span class="program-link">Learn More →</span>
+                        <span class="program-link">Learn More &#8594;</span>
                     </div>
                 </div>
-                <!-- Card 2 -->
                 <div class="program-card reveal reveal-delay-1" onclick="openDetail(1)" role="button" tabindex="0" aria-label="Learn more about Cities, Climate and Urban Africa" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(1)">
-                    <div class="card-img">
-                        <img src="images/program-cities.jpg" alt="African city skyline at dusk" loading="lazy">
-                    </div>
+                    <div class="card-img"><img src="images/program-cities.jpg" alt="African city skyline at dusk" loading="lazy"></div>
                     <div class="card-body">
-                        <h3>Cities, Climate & Urban Africa</h3>
-                        <div class="program-for">Policy · Urban · Sustainability</div>
+                        <h3>Cities, Climate &amp; Urban Africa</h3>
+                        <div class="program-for">Policy &#183; Urban &#183; Sustainability</div>
                         <p>Students explore how African cities respond to climate change, urbanisation, and infrastructure challenges through field visits and expert conversations.</p>
                         <div class="program-themes"><span class="program-theme">Climate Adaptation</span><span class="program-theme">Urban Innovation</span><span class="program-theme">Sustainable Development</span></div>
-                        <span class="program-link">Learn More →</span>
+                        <span class="program-link">Learn More &#8594;</span>
                     </div>
                 </div>
-                <!-- Card 3 -->
                 <div class="program-card reveal reveal-delay-2" onclick="openDetail(2)" role="button" tabindex="0" aria-label="Learn more about Africa in the Global Economy" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(2)">
-                    <div class="card-img">
-                        <img src="images/program-economy.jpg" alt="Business meeting in a modern office" loading="lazy">
-                    </div>
+                    <div class="card-img"><img src="images/program-economy.jpg" alt="Business meeting in a modern office" loading="lazy"></div>
                     <div class="card-body">
                         <h3>Africa in the Global Economy</h3>
-                        <div class="program-for">Economics · International Relations</div>
+                        <div class="program-for">Economics &#183; International Relations</div>
                         <p>Students engage with policymakers, economists, and industry leaders to understand Africa's evolving role in global trade, finance, and development.</p>
                         <div class="program-themes"><span class="program-theme">Regional Trade</span><span class="program-theme">Economic Transformation</span><span class="program-theme">Global Partnerships</span></div>
-                        <span class="program-link">Learn More →</span>
+                        <span class="program-link">Learn More &#8594;</span>
                     </div>
                 </div>
-                <!-- Card 4 -->
                 <div class="program-card reveal reveal-delay-1" onclick="openDetail(3)" role="button" tabindex="0" aria-label="Learn more about Leadership in Emerging Markets" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(3)">
-                    <div class="card-img">
-                        <img src="images/program-leadership.jpg" alt="Business team collaborating" loading="lazy">
-                    </div>
+                    <div class="card-img"><img src="images/program-leadership.jpg" alt="Business team collaborating" loading="lazy"></div>
                     <div class="card-body">
                         <h3>Leadership in Emerging Markets</h3>
-                        <div class="program-for">Executive MBA · Executive Education</div>
+                        <div class="program-for">Executive MBA &#183; Executive Education</div>
                         <p>Senior professionals engage with business leaders and policy innovators navigating rapidly changing economic and regulatory environments across the continent.</p>
                         <div class="program-themes"><span class="program-theme">Leadership in Complexity</span><span class="program-theme">Cross-Cultural Strategy</span><span class="program-theme">Innovation</span></div>
-                        <span class="program-link">Learn More →</span>
+                        <span class="program-link">Learn More &#8594;</span>
                     </div>
                 </div>
-                <!-- Card 5 -->
                 <div class="program-card reveal reveal-delay-2" onclick="openDetail(4)" role="button" tabindex="0" aria-label="Learn more about Global Classroom" onkeydown="if(event.key==='Enter'||event.key===' ')openDetail(4)">
-                    <div class="card-img">
-                        <img src="images/program-classroom.jpg" alt="Students in a classroom setting" loading="lazy">
-                    </div>
+                    <div class="card-img"><img src="images/program-classroom.jpg" alt="Students in a classroom setting" loading="lazy"></div>
                     <div class="card-body">
                         <h3>Global Classroom</h3>
-                        <div class="program-for">Online · Hybrid · Distance</div>
+                        <div class="program-for">Online &#183; Hybrid &#183; Distance</div>
                         <p>Students who typically interact only virtually come together for a powerful shared immersive experience, building professional networks and deepening institutional connection.</p>
                         <div class="program-themes"><span class="program-theme">Cohort Cohesion</span><span class="program-theme">Network Building</span><span class="program-theme">Institutional Engagement</span></div>
-                        <span class="program-link">Learn More →</span>
+                        <span class="program-link">Learn More &#8594;</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- WHY AFRICA — static background, no parallax -->
+    <!-- WHY AFRICA — static background (no parallax) -->
     <section id="why-africa" class="why-africa">
-        <div class="why-africa-bg" id="whyBg"></div>
+        <div class="why-africa-bg"></div>
         <div class="why-africa-content">
             <div class="container">
-                <div class="section-heading reveal" style="color:white;max-width:800px;margin:0 auto 3.5rem;">
+                <div class="section-heading reveal" style="max-width:800px;margin:0 auto 3.5rem;">
                     <div class="section-eyebrow" style="color:var(--accent);justify-content:center;display:inline-flex;">Why Africa</div>
                     <h2 style="color:var(--white);">Where Global Ideas Meet <em style="color:var(--accent);">Lived Realities</em></h2>
                     <p style="color:rgba(255,255,255,0.7);">Africa is one of the most dynamic regions shaping the future of the global economy, innovation, and leadership.</p>
@@ -2366,7 +831,7 @@
                         <p>Rapidly growing cities, entrepreneurial ecosystems, and cultural movements are redefining conversations about technology, sustainability, and development.</p>
                         <p>Yet despite its importance, many students studying in Europe and North America have limited opportunities to engage meaningfully with African contexts during their academic journeys.</p>
                         <blockquote>
-                            <p>"Africa is not simply a destination. It is a place where students encounter the complexity and creativity that define our interconnected world."</p>
+                            <p>&#8220;Africa is not simply a destination. It is a place where students encounter the complexity and creativity that define our interconnected world.&#8221;</p>
                         </blockquote>
                     </div>
                     <div class="why-right reveal reveal-delay-2">
@@ -2390,33 +855,25 @@
             </div>
             <div class="how-steps">
                 <div class="how-step reveal">
-                    <div class="step-circle">
-                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
+                    <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
                     <div class="step-num-label">Step 01</div>
                     <h3>Discovery Conversation</h3>
                     <p>We begin with a strategic conversation to understand your institution's internationalisation goals, student profile, programme structure, and timeline.</p>
                 </div>
                 <div class="how-step reveal reveal-delay-1">
-                    <div class="step-circle">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    </div>
+                    <div class="step-circle"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
                     <div class="step-num-label">Step 02</div>
                     <h3>Programme Co-Design</h3>
                     <p>We develop a tailored programme proposal — including academic framing, itinerary, partner organisations, and learning outcomes — in close collaboration with your team.</p>
                 </div>
                 <div class="how-step reveal reveal-delay-2">
-                    <div class="step-circle">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="step-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div class="step-num-label">Step 03</div>
                     <h3>Logistics and Delivery</h3>
                     <p>We manage all operational elements — travel, accommodation, venue partnerships, speaker coordination, and on-the-ground facilitation — so your team can focus on the academic experience.</p>
                 </div>
                 <div class="how-step reveal reveal-delay-3">
-                    <div class="step-circle">
-                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                    </div>
+                    <div class="step-circle"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
                     <div class="step-num-label">Step 04</div>
                     <h3>Evaluation and Growth</h3>
                     <p>After each programme, we conduct structured evaluation and work with you to deepen the partnership — building toward longer-term institutional collaboration.</p>
@@ -2453,9 +910,9 @@
                 <p>Hear from students and university decision-makers who've partnered with Archer Africa</p>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card reveal"><span class="quote-mark">"</span><p class="testimonial-text">This program transformed my understanding of global economics and African leadership. The immersive experience was invaluable.</p><div class="testimonial-author"><div class="author-avatar-initials">SA</div><div class="author-info"><h4>Sarah Anderson</h4><p>Yale University</p></div></div></div>
-                <div class="testimonial-card reveal reveal-delay-1"><span class="quote-mark">"</span><p class="testimonial-text">Archer Africa exceeded our expectations. The partnership has strengthened our institution's commitment to global education and student outcomes.</p><div class="testimonial-author"><div class="author-avatar-initials">DR</div><div class="author-info"><h4>Dr. Robert Smith</h4><p>Director of International Programs</p></div></div></div>
-                <div class="testimonial-card reveal reveal-delay-2"><span class="quote-mark">"</span><p class="testimonial-text">The professionalism, cultural sensitivity, and attention to detail made this the best study abroad experience I could have asked for.</p><div class="testimonial-author"><div class="author-avatar-initials">MJ</div><div class="author-info"><h4>Michael Johnson</h4><p>Stanford University</p></div></div></div>
+                <div class="testimonial-card reveal"><span class="quote-mark">&#8220;</span><p class="testimonial-text">This program transformed my understanding of global economics and African leadership. The immersive experience was invaluable.</p><div class="testimonial-author"><div class="author-avatar-initials">SA</div><div class="author-info"><h4>Sarah Anderson</h4><p>Yale University</p></div></div></div>
+                <div class="testimonial-card reveal reveal-delay-1"><span class="quote-mark">&#8220;</span><p class="testimonial-text">Archer Africa exceeded our expectations. The partnership has strengthened our institution's commitment to global education and student outcomes.</p><div class="testimonial-author"><div class="author-avatar-initials">DR</div><div class="author-info"><h4>Dr. Robert Smith</h4><p>Director of International Programs</p></div></div></div>
+                <div class="testimonial-card reveal reveal-delay-2"><span class="quote-mark">&#8220;</span><p class="testimonial-text">The professionalism, cultural sensitivity, and attention to detail made this the best study abroad experience I could have asked for.</p><div class="testimonial-author"><div class="author-avatar-initials">MJ</div><div class="author-info"><h4>Michael Johnson</h4><p>Stanford University</p></div></div></div>
             </div>
         </div>
     </section>
@@ -2469,7 +926,7 @@
                 <p>Experienced professionals dedicated to educational excellence and cultural understanding</p>
             </div>
             <div class="team-grid">
-                <div class="team-card reveal"><div class="team-image"><img src="images/team-james.jpg" alt="James Kipchoge" loading="lazy"></div><div class="team-info"><h3>James Kipchoge</h3><div class="team-role">Founder & CEO</div><p class="team-bio">20+ years in international education. Harvard Kennedy School alumnus with deep African networks.</p></div></div>
+                <div class="team-card reveal"><div class="team-image"><img src="images/team-james.jpg" alt="James Kipchoge" loading="lazy"></div><div class="team-info"><h3>James Kipchoge</h3><div class="team-role">Founder &amp; CEO</div><p class="team-bio">20+ years in international education. Harvard Kennedy School alumnus with deep African networks.</p></div></div>
                 <div class="team-card reveal reveal-delay-1"><div class="team-image"><img src="images/team-amara.jpg" alt="Amara Patel" loading="lazy"></div><div class="team-info"><h3>Amara Patel</h3><div class="team-role">Program Director</div><p class="team-bio">Expert in curriculum design and student outcomes. Former faculty at Oxford University.</p></div></div>
                 <div class="team-card reveal reveal-delay-2"><div class="team-image"><img src="images/team-elise.jpg" alt="Elise Mensah" loading="lazy"></div><div class="team-info"><h3>Elise Mensah</h3><div class="team-role">Partnership Lead</div><p class="team-bio">Builds institutional relationships across Africa and North America. Cultural integration specialist.</p></div></div>
                 <div class="team-card reveal reveal-delay-3"><div class="team-image"><img src="images/team-kwame.jpg" alt="Dr. Kwame Owusu" loading="lazy"></div><div class="team-info"><h3>Dr. Kwame Owusu</h3><div class="team-role">Academic Advisor</div><p class="team-bio">Ph.D. in African Studies. Leads curriculum and research initiatives across partner institutions.</p></div></div>
@@ -2513,7 +970,7 @@
     <!-- INQUIRY -->
     <section id="inquiry" class="inquiry section-pad">
         <div class="container">
-            <div class="section-heading reveal" style="max-width:800px;margin:0 auto 3.5rem;color:white;">
+            <div class="section-heading reveal" style="max-width:800px;margin:0 auto 3.5rem;">
                 <div class="section-eyebrow" style="color:var(--accent);justify-content:center;display:inline-flex;">Get In Touch</div>
                 <h2 style="color:var(--white);">Start a <em style="color:var(--accent);">Conversation</em></h2>
                 <p style="color:rgba(255,255,255,0.65);">Whether you have a specific programme in mind or are exploring what international learning could look like for your students, we would love to hear from you.</p>
@@ -2546,14 +1003,14 @@
                         <div class="trust-item"><div class="trust-dot"></div><p>Transparent process — no pressure, no generic proposals</p></div>
                         <div class="trust-item"><div class="trust-dot"></div><p>We typically respond within two business days</p></div>
                     </div>
-                    <!-- Map — taller to match form -->
+                    <!-- Map — flex:1 so it fills all remaining height in left column -->
                     <div class="inquiry-map reveal">
-                        <div class="map-pin">📍</div>
+                        <div class="map-pin">&#128205;</div>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.578549622208!2d28.03986231503211!3d-26.14321848342588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1c7e8f5b8f%3A0x2c5a8f8b6f0b3a2d!2sJohannesburg%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Archer Africa's location in Johannesburg"></iframe>
                     </div>
                 </div>
 
-                <!-- Right Column — Transparent Form -->
+                <!-- Right Column -->
                 <div class="inquiry-right reveal reveal-delay-2">
                     <div class="inquiry-form">
                         <div id="formMessage" class="form-message"></div>
@@ -2609,7 +1066,7 @@
                     <ul><li><a href="#inquiry">Work With Us</a></li><li><a href="#inquiry">Contact</a></li></ul>
                     <h4 style="margin-top:1.5rem;">Connect</h4>
                     <div class="footer-social">
-                        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733 -16zM4 20l6.768 -6.768M19.5 4l-6.768 6.768"/></svg></a>
+                        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M19.5 4l-6.768 6.768"/></svg></a>
                         <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
                         <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
                         <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -2617,7 +1074,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Archer Africa. All rights reserved.</p>
+                <p>&#169; 2026 Archer Africa. All rights reserved.</p>
                 <p style="margin-top:0.3rem;font-size:0.78rem;">Johannesburg, South Africa</p>
             </div>
         </div>
@@ -2636,11 +1093,11 @@
 
     <script>
         const programmes = [
-            { eyebrow: "MBA · Graduate · Executive Education", title: "Global Innovation Immersion", for: "Designed for MBA programmes, graduate schools, and executive education cohorts", duration: "10 - 14 days", format: "Immersive field programme, cultural excursions", location: "Innovation hubs, university campuses, SMME operations", cohort: "Tailored to your institution", desc: "Students spend approximately two weeks engaging with startup ecosystems, venture builders, research institutions, and innovation hubs. Participants meet entrepreneurs, investors, policymakers, and technology leaders while exploring how innovation responds to local and global challenges.", outcomes: "Participants leave with a richer understanding of emerging market entrepreneurship, practical exposure to innovation ecosystems, and a global professional network that extends across continents.", themes: ["Entrepreneurship & venture ecosystems", "Fintech and digital transformation", "Social innovation and impact investment", "Emerging market strategy", "Cross-cultural leadership", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
-            { eyebrow: "Public Policy · Urban Studies · Sustainability", title: "Cities, Climate & Urban Africa", for: "Designed for public policy, urban studies, sustainability, and environmental programmes", duration: "10 - 14 days", format: "Field visits, expert roundtables and cultural excursions", location: "Innovation hubs, university campuses, SMME operations", cohort: "Tailored to your institution", desc: "Students explore how African cities are responding to climate change, urbanisation, and infrastructure challenges. The programme combines academic discussions, field visits, and conversations with city planners, researchers, and community organisations working at the intersection of climate and development.", outcomes: "Participants gain direct exposure to how urban communities navigate climate adaptation, infrastructure constraints, and governance — perspectives that reshape how they approach policy analysis and environmental challenges.", themes: ["Climate adaptation and resilience", "Urban innovation and infrastructure", "Sustainable development", "Community-led environmental solutions", "Governance and policy", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
-            { eyebrow: "Economics · International Relations · Global Studies", title: "Africa in the Global Economy", for: "Designed for undergraduate and graduate programmes in economics, international relations, and global studies", duration: "8 - 14 days", format: "Institutional visits and policy dialogues", location: "Financial and policy institutions", cohort: "Tailored to your institution", desc: "Students engage with policymakers, economists, and industry leaders to understand Africa's evolving role in global trade, finance, and development. Visits may include universities, policy institutes, financial institutions, and regional organisations.", outcomes: "Students return with a grounded understanding of regional economic dynamics, trade relationships, and the policy environments shaping Africa's role in the global economy.", themes: ["Regional integration and trade", "Economic transformation", "Industrial policy", "Global economic partnerships", "Development finance", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
-            { eyebrow: "Executive MBA · Executive Education", title: "Leadership in Emerging Markets", for: "Designed for executive education and executive MBA programmes", duration: "8 - 14 days", format: "High-level leadership immersion", location: "African business and policy environments", cohort: "Senior professional cohorts", desc: "Senior professionals participate in immersive learning experiences that explore leadership and strategy in emerging markets. Participants engage with business leaders, entrepreneurs, and policy innovators navigating rapidly changing economic and regulatory environments.", outcomes: "Executives leave with sharper instincts for leading in contexts of complexity and ambiguity, new frameworks for emerging market strategy, and connections to a remarkable network of African business and policy leaders.", themes: ["Leadership in complexity", "Cross-cultural negotiation", "Emerging market strategy", "Innovation under constraint", "Stakeholder engagement", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
-            { eyebrow: "Online · Hybrid · Distance Learning", title: "Global Classroom", for: "Designed for universities offering online, hybrid, evening and weekend, or distance learning programmes", duration: "3 - 5 days", format: "Cohort immersion gathering", location: "African city of your choice", cohort: "Online and distance cohorts", desc: "Students who typically interact only virtually come together for a short immersive experience, creating a shared global classroom. These gatherings allow students to build deeper professional networks, meet faculty and peers in person, and strengthen their connection to their institution.", outcomes: "Universities consistently report that these experiences dramatically increase engagement, cohort cohesion, and long-term alumni connection among students who met in person for the first time in Africa.", themes: ["Cohort building and professional networks", "Peer learning and collaboration", "Institutional connection", "Cultural immersion", "Faculty and student engagement"] }
+            { eyebrow: "MBA \u00b7 Graduate \u00b7 Executive Education", title: "Global Innovation Immersion", for: "Designed for MBA programmes, graduate schools, and executive education cohorts", duration: "10 - 14 days", format: "Immersive field programme, cultural excursions", location: "Innovation hubs, university campuses, SMME operations", cohort: "Tailored to your institution", desc: "Students spend approximately two weeks engaging with startup ecosystems, venture builders, research institutions, and innovation hubs. Participants meet entrepreneurs, investors, policymakers, and technology leaders while exploring how innovation responds to local and global challenges.", outcomes: "Participants leave with a richer understanding of emerging market entrepreneurship, practical exposure to innovation ecosystems, and a global professional network that extends across continents.", themes: ["Entrepreneurship & venture ecosystems", "Fintech and digital transformation", "Social innovation and impact investment", "Emerging market strategy", "Cross-cultural leadership", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
+            { eyebrow: "Public Policy \u00b7 Urban Studies \u00b7 Sustainability", title: "Cities, Climate & Urban Africa", for: "Designed for public policy, urban studies, sustainability, and environmental programmes", duration: "10 - 14 days", format: "Field visits, expert roundtables and cultural excursions", location: "Innovation hubs, university campuses, SMME operations", cohort: "Tailored to your institution", desc: "Students explore how African cities are responding to climate change, urbanisation, and infrastructure challenges. The programme combines academic discussions, field visits, and conversations with city planners, researchers, and community organisations working at the intersection of climate and development.", outcomes: "Participants gain direct exposure to how urban communities navigate climate adaptation, infrastructure constraints, and governance \u2014 perspectives that reshape how they approach policy analysis and environmental challenges.", themes: ["Climate adaptation and resilience", "Urban innovation and infrastructure", "Sustainable development", "Community-led environmental solutions", "Governance and policy", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
+            { eyebrow: "Economics \u00b7 International Relations \u00b7 Global Studies", title: "Africa in the Global Economy", for: "Designed for undergraduate and graduate programmes in economics, international relations, and global studies", duration: "8 - 14 days", format: "Institutional visits and policy dialogues", location: "Financial and policy institutions", cohort: "Tailored to your institution", desc: "Students engage with policymakers, economists, and industry leaders to understand Africa\u2019s evolving role in global trade, finance, and development. Visits may include universities, policy institutes, financial institutions, and regional organisations.", outcomes: "Students return with a grounded understanding of regional economic dynamics, trade relationships, and the policy environments shaping Africa\u2019s role in the global economy.", themes: ["Regional integration and trade", "Economic transformation", "Industrial policy", "Global economic partnerships", "Development finance", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
+            { eyebrow: "Executive MBA \u00b7 Executive Education", title: "Leadership in Emerging Markets", for: "Designed for executive education and executive MBA programmes", duration: "8 - 14 days", format: "High-level leadership immersion", location: "African business and policy environments", cohort: "Senior professional cohorts", desc: "Senior professionals participate in immersive learning experiences that explore leadership and strategy in emerging markets. Participants engage with business leaders, entrepreneurs, and policy innovators navigating rapidly changing economic and regulatory environments.", outcomes: "Executives leave with sharper instincts for leading in contexts of complexity and ambiguity, new frameworks for emerging market strategy, and connections to a remarkable network of African business and policy leaders.", themes: ["Leadership in complexity", "Cross-cultural negotiation", "Emerging market strategy", "Innovation under constraint", "Stakeholder engagement", "Institutional connection", "Peer learning and collaboration", "Cohort building and professional networks"] },
+            { eyebrow: "Online \u00b7 Hybrid \u00b7 Distance Learning", title: "Global Classroom", for: "Designed for universities offering online, hybrid, evening and weekend, or distance learning programmes", duration: "3 - 5 days", format: "Cohort immersion gathering", location: "African city of your choice", cohort: "Online and distance cohorts", desc: "Students who typically interact only virtually come together for a short immersive experience, creating a shared global classroom. These gatherings allow students to build deeper professional networks, meet faculty and peers in person, and strengthen their connection to their institution.", outcomes: "Universities consistently report that these experiences dramatically increase engagement, cohort cohesion, and long-term alumni connection among students who met in person for the first time in Africa.", themes: ["Cohort building and professional networks", "Peer learning and collaboration", "Institutional connection", "Cultural immersion", "Faculty and student engagement"] }
         ];
 
         function openDetail(i) {
@@ -2672,9 +1129,11 @@
 
         // Nav scroll
         const mainNav = document.getElementById('mainNav');
-        window.addEventListener('scroll', () => { mainNav.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+        window.addEventListener('scroll', () => {
+            mainNav.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
 
-        // Active nav
+        // Active nav highlight
         const navSections = document.querySelectorAll('section[id]');
         const navAnchors = document.querySelectorAll('.nav-links a:not(.nav-cta)');
         window.addEventListener('scroll', () => {
@@ -2694,7 +1153,10 @@
         const hamburger = document.getElementById('hamburger');
         const mobileOverlay = document.getElementById('mobileOverlay');
         const mobileClose = document.getElementById('mobileClose');
-        function toggleMobileMenu(open) { mobileOverlay.classList.toggle('open', open); hamburger.classList.toggle('active', open); }
+        function toggleMobileMenu(open) {
+            mobileOverlay.classList.toggle('open', open);
+            hamburger.classList.toggle('active', open);
+        }
         hamburger.addEventListener('click', () => toggleMobileMenu(true));
         mobileClose.addEventListener('click', () => toggleMobileMenu(false));
         mobileOverlay.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => toggleMobileMenu(false)));
@@ -2707,8 +1169,8 @@
         // Scroll progress
         const progressBar = document.getElementById('scrollProgressBar');
         window.addEventListener('scroll', () => {
-            const progress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            progressBar.style.width = progress + '%';
+            const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = pct + '%';
         }, { passive: true });
 
         // Reveal animations
@@ -2726,9 +1188,13 @@
             });
         });
 
-        // Why Africa — static background (no parallax), remove transform
-        // The background is static by default; we just ensure no transform is applied.
-        // No scroll listener needed for parallax.
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                const t = this.getAttribute('href');
+                if (t !== '#' && document.querySelector(t)) { e.preventDefault(); document.querySelector(t).scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
 
         // Form submission
         document.getElementById('inquiryForm').addEventListener('submit', function(e) {
@@ -2742,7 +1208,7 @@
             }
             const btn = this.querySelector('.form-submit');
             const orig = btn.textContent;
-            btn.textContent = 'Sending…';
+            btn.textContent = 'Sending\u2026';
             btn.disabled = true;
             setTimeout(() => {
                 msg.innerHTML = '<svg style="width:18px;height:18px;stroke:#b8e6c4;fill:none;stroke-width:2.5;display:inline-block;vertical-align:middle;margin-right:8px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Thank you for your enquiry! We\'ll be in touch within two business days.';
@@ -2752,14 +1218,6 @@
                 btn.disabled = false;
                 setTimeout(() => { msg.className = 'form-message'; }, 5000);
             }, 1000);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                const t = this.getAttribute('href');
-                if (t !== '#' && document.querySelector(t)) { e.preventDefault(); document.querySelector(t).scrollIntoView({ behavior: 'smooth' }); }
-            });
         });
     </script>
 </body>
